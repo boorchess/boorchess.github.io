@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cool Smart Kids Profile</title>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<style>
+  body { font-family: 'Roboto', sans-serif; background-color: #f0f0f0; }
+  .profile-container { max-width: 800px; margin: auto; background-color: #fff; padding: 20px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); }
+  .profile-header { text-align: center; position: relative; }
+  .profile-picture { font-size: 120px; color: #757575; cursor: pointer; transition: color 0.3s; }
+  .color-picker { display: none; }
+</style>
+</head>
+<body>
+
+<div class="profile-container">
+  <header class="profile-header">
+    <!-- Using Material Icon as profile picture placeholder -->
+    <i class="material-icons profile-picture" onclick="openColorPicker()">account_circle</i>
+    <input type="color" id="colorPicker" class="color-picker" onchange="applyColor(this.value)">
+    <h1>Jane Doe</h1>
+    <p>Junior Scientist</p>
+  </header>
+  <div class="profile-info">
+    <h2>About Me</h2>
+    <p>Hello! I'm Jane, a curious and adventurous lover of science and all things tech. I enjoy experimenting with new ideas and creating cool projects. I'm also a team player who loves sharing knowledge with my fellow smart kids!</p>
+    
+    <h2>Contact Info</h2>
+    <p>Email: jane.doe@coolsmartkids.com</p>
+    <p>Phone: 123-456-7890</p>
+  </div>
+</div>
+
+<script>
+function openColorPicker() {
+  document.getElementById('colorPicker').click();
+}
+
+function applyColor(color) {
+  document.querySelector('.profile-picture').style.color = color;
+}
+</script>
+
+</body>
+</html>

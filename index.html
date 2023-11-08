@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cool Smart Kids</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+            padding: 1em 0;
+            font-size: 2em;
+        }
+        .content {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 5px;
+        }
+        .intro {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .sections {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 20px;
+        }
+        .section {
+            width: 30%;
+            text-align: center;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            font-size: 0.9em;
+            color: #777;
+        }
+        .section-icon {
+    font-size: 48px;
+    color: #4CAF50;  /* matching the header color for consistency */
+    display: block;
+    margin: 0 auto 15px auto;  /* centered icon with space below */
+}
+.google-styled-button {
+    display: inline-block;
+    background-color: #4CAF50; /* Google green */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    font-size: 1em;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.google-styled-button:hover {
+    background-color: #43a047; /* Darken the Google green a bit on hover */
+}
+
+footer {
+    position: fixed;  /* Keeps the footer at the bottom-right regardless of scrolling */
+    right: 10px;  /* Distance from the right edge of the viewport */
+    bottom: 10px;  /* Distance from the bottom edge of the viewport */
+    font-size: 0.9em;
+    color: #777;
+}
+
+.fade-in {
+    opacity: 0;
+    animation-name: fadeIn;
+    animation-duration: 1.5s;
+    animation-timing-function: ease-in;
+    animation-fill-mode: forwards;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.google-styled-button:hover {
+    transform: scale(1.05);  /* Slightly enlarges the button */
+    transition: transform 0.3s ease-in-out;
+}
+
+.slide-in-from-right {
+    transform: translateX(100%);  /* Start off the right side of the screen */
+    animation: slideIn 1s forwards;
+}
+
+@keyframes slideIn {
+    to {
+        transform: translateX(0);  /* Slide into its natural position */
+    }
+}
+
+.material-icons:hover {
+    transform: rotate(360deg);  /* Slight rotation */
+    transition: transform 0.5s ease-in-out;
+}
+
+.bounce-in {
+    animation: bounce 1s infinite;
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-10px);
+    }
+    60% {
+        transform: translateY(-5px);
+    }
+}
+
+.rotate {
+    animation: spin 4s linear infinite;
+}
+
+@keyframes spin {
+    100% {
+        transform: rotate(360deg);
+    }
+}
+.pulse {
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.wiggle {
+    animation: wiggle 1s ease-in-out infinite;
+}
+
+@keyframes wiggle {
+    0% {
+        transform: rotate(-3deg);
+    }
+    50% {
+        transform: rotate(3deg);
+    }
+    100% {
+        transform: rotate(-3deg);
+    }
+}
+
+.slide-up-hover:hover {
+    transform: translateY(-5px);
+    transition: transform 0.3s ease-in-out;
+}
+
+
+    </style>
+</head>
+<body>
+    
+
+<header>
+    Cool Smart Kids
+</header>
+
+<div class="content">
+    <div class="intro">
+        <p>Welcome to the ultimate place for young geniuses. Explore, learn, and show off your brilliance!</p>
+    </div>
+
+    <div class="sections">
+        <div class="section">
+            <span class="material-icons section-icon">book</span>
+            <h2>Learn</h2>
+            <p>Discover fascinating topics and expand your knowledge.</p>
+            <a href="learn.html" class="google-styled-button">Learn More</a>
+        </div>
+        
+        <div class="section">
+            <span class="material-icons section-icon">sports_esports</span>
+            <h2>Play</h2>
+            <p>Engage in brainy games that challenge and entertain.</p>
+            <a href="games.html" class="google-styled-button">Play Now</a>
+        </div>
+        
+        <!-- Inside the existing <div class="sections"> container -->
+
+<!-- Account Section -->
+<div class="section">
+    <span class="material-icons section-icon">supervised_user_circle</span>
+    <h2>Account</h2>
+    <p>Access your account or view profile details.</p>
+    <a href="login.html" class="google-styled-button">Log In or Sign Up</a>
+</div>
+
+    </div>
+    
+    
+</div>
+
+<footer>
+    © 2023 Cool Smart Kids. All rights reserved, Made by Gibson B.
+</footer>
+
+</body>
+</html>

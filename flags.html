@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flag Game</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        h2 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        #flagContainer {
+            width: 600px;
+            padding: 10px;
+            background-color: #fff;
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .flag {
+            width: 100px;
+            height: 100px;
+            cursor: pointer;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .flag:hover {
+            transform: scale(1.05);
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+</head>
+
+<body>
+
+<h2>Click on the flag of <span id="countryName">Country Name</span></h2>
+
+<div id="flagContainer">
+    <!-- Placeholder for Wikipedia flag images -->
+</div>
+
+<script>
+    
+let flagsData = [
+{country: "USA", url: "https://upload.wikimedia.org/wikipedia/en/a/a4/Flag_of_the_United_States.svg"},
+        {country: "Canada", url: "https://upload.wikimedia.org/wikipedia/commons/d/d9/Flag_of_Canada_%28Pantone%29.svg"},
+        {country: "UK", url: "https://upload.wikimedia.org/wikipedia/en/a/ae/Flag_of_the_United_Kingdom.svg"},
+        {country: "France", url: "https://upload.wikimedia.org/wikipedia/en/c/c3/Flag_of_France.svg"},
+        {country: "Germany", url: "https://upload.wikimedia.org/wikipedia/en/b/ba/Flag_of_Germany.svg"},
+        {country: "Brazil", url: "https://upload.wikimedia.org/wikipedia/en/0/05/Flag_of_Brazil.svg"},
+        {country: "India", url: "https://upload.wikimedia.org/wikipedia/en/4/41/Flag_of_India.svg"},
+        {country: "Japan", url: "https://upload.wikimedia.org/wikipedia/en/9/9e/Flag_of_Japan.svg"},
+        {country: "Australia", url: "https://upload.wikimedia.org/wikipedia/commons/8/88/Flag_of_Australia_%28converted%29.svg"},
+        {country: "South Korea", url: "https://upload.wikimedia.org/wikipedia/commons/0/09/Flag_of_South_Korea.svg"}
+];
+
+let currentCountry = "";
+
+function pickRandomCountry() {
+let randomIndex = Math.floor(Math.random() * 5); // Pick from the displayed 5 flags
+currentCountry = flagsData[randomIndex].country;
+document.getElementById("countryName").textContent = currentCountry;
+}
+
+function checkAnswer(event) {
+if (event.target.dataset.country === currentCountry) {
+    alert("Correct!");
+    renderFlags();
+    pickRandomCountry();
+} else {
+    alert("Wrong! Try again.");
+}
+}
+
+function renderFlags() {
+// Randomize the array and then slice the first 5 for display
+let shuffledFlags = [...flagsData].sort(() => Math.random() - 0.5).slice(0, 5);
+
+const container = document.getElementById("flagContainer");
+container.innerHTML = ""; // Clear existing flags
+
+shuffledFlags.forEach(flagData => {
+    let img = document.createElement('img');
+    img.src = flagData.url;
+    img.className = "flag";
+    img.dataset.country = flagData.country;
+    img.addEventListener("click", checkAnswer);
+    container.appendChild(img);
+});
+}
+
+// Initialize the game
+renderFlags();
+pickRandomCountry();
+
+</script>
+
+</body>
+
+</html>
+
+
