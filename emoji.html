@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Emoji Spelling Game</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -23,10 +24,38 @@
             padding: 10px 20px;
             font-size: 20px;
             cursor: pointer;
+            background-color: #4CAF50; /* Green background */
+            color: white; /* White text */
+            border: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        #submit-button:hover {
+            background-color: #45a049; /* Darker green on hover */
+        }
+        .material-icons {
+            vertical-align: middle;
+            margin-right: 8px;
         }
         #feedback-container {
             margin-top: 20px;
             font-size: 20px;
+        }
+        #score-container {
+            margin-top: 20px;
+            font-size: 20px;
+        }
+		  #submit-button {
+            background-color: #4CAF50; /* Green background */
+        }
+        #submit-button:hover {
+            background-color: #45a049; /* Darker green on hover */
+        }
+        #skip-button {
+            background-color: #808080; /* Grey background */
+        }
+        #skip-button:hover {
+            background-color: #696969; /* Darker grey on hover */
         }
     </style>
     <script src="https://twemoji.maxcdn.com/v/latest/twemoji.min.js" crossorigin="anonymous"></script>
@@ -35,15 +64,23 @@
     <div id="game-container">
         <div id="emoji-container"></div>
         <input type="text" id="user-input" placeholder="Spell the word">
-        <button id="submit-button" onclick="checkSpelling()">Submit</button>
+        <button id="submit-button" onclick="checkSpelling()">
+            <span class="material-icons">check_circle</span>
+            Submit
+        </button>
+		<button id="skip-button" class="button" onclick="loadNewEmoji()">
+            <span class="material-icons">skip_next</span>
+            Skip
+        </button>
         <div id="feedback-container"></div>
+        <div id="score-container">Score: <span id="score">0</span></div>
     </div>
 
     <audio id="correct-sound" src="path/to/correct.mp3" type="audio/mpeg"></audio>
 
-
     <script>
-	let score = 0;
+        let score = 0;
+        let currentEmoji;
 
           const emojiWords = [
 { emoji: "🍎", word: "apple" },
@@ -76,10 +113,9 @@
 { emoji: "😱", word: "shocked" },
 { emoji: "😴", word: "sleepy" },
 { emoji: "😎", word: "cool" },
-{ emoji: "😕", word: "confused" },
 { emoji: "🤔", word: "thinking" }
 ];
-        let currentEmoji = '';
+
 
         function loadNewEmoji() {
             const randomIndex = Math.floor(Math.random() * emojiWords.length);
@@ -92,9 +128,12 @@
 
         function checkSpelling() {
             const userInput = document.getElementById('user-input').value.trim().toLowerCase();
-            if (userInput === currentEmoji.word) {
+            if (currentEmoji.word === userInput) {
                 document.getElementById('feedback-container').textContent = 'Correct!';
-                document.getElementById('correct-sound').play();
+                score++;
+                document.getElementById('score').textContent = score;
+                const correctSound = document.getElementById('correct-sound');
+                if (correctSound) correctSound.play();
                 setTimeout(loadNewEmoji, 2000); // Load new emoji after 2 seconds
             } else {
                 document.getElementById('feedback-container').textContent = 'Try again!';
@@ -105,3 +144,4 @@
     </script>
 </body>
 </html>
+
