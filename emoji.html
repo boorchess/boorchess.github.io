@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emoji Spelling Game</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        #emoji-container {
+            font-size: 50px;
+            margin-bottom: 20px;
+        }
+        #user-input {
+            font-size: 20px;
+            padding: 10px;
+            width: 200px;
+        }
+        #submit-button {
+            padding: 10px 20px;
+            font-size: 20px;
+            cursor: pointer;
+        }
+        #feedback-container {
+            margin-top: 20px;
+            font-size: 20px;
+        }
+    </style>
+    <script src="https://twemoji.maxcdn.com/v/latest/twemoji.min.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div id="game-container">
+        <div id="emoji-container"></div>
+        <input type="text" id="user-input" placeholder="Spell the word">
+        <button id="submit-button" onclick="checkSpelling()">Submit</button>
+        <div id="feedback-container"></div>
+    </div>
+
+    <audio id="correct-sound" src="path/to/correct.mp3" type="audio/mpeg"></audio>
+
+
+    <script>
+	let score = 0;
+
+          const emojiWords = [
+{ emoji: "🍎", word: "apple" },
+{ emoji: "🐶", word: "dog" },
+{ emoji: "🚗", word: "car" },
+{ emoji: "🌳", word: "tree" },
+{ emoji: "🏠", word: "house" },
+{ emoji: "👻", word: "ghost" },
+{ emoji: "🌧️", word: "rain" },
+{ emoji: "📚", word: "book" },
+{ emoji: "🎂", word: "cake" },
+{ emoji: "🚀", word: "rocket" },
+// Added animals
+{ emoji: "🐱", word: "cat" },
+{ emoji: "🐭", word: "mouse" },
+{ emoji: "🐰", word: "rabbit" },
+{ emoji: "🐯", word: "tiger" },
+{ emoji: "🐸", word: "frog" },
+{ emoji: "🐼", word: "panda" },
+{ emoji: "🦁", word: "lion" },
+{ emoji: "🐔", word: "chicken" },
+{ emoji: "🦉", word: "owl" },
+{ emoji: "🦄", word: "unicorn" },
+// Added emotions
+{ emoji: "😀", word: "happy" },
+{ emoji: "😂", word: "laughing" },
+{ emoji: "😍", word: "love" },
+{ emoji: "😢", word: "sad" },
+{ emoji: "😡", word: "angry" },
+{ emoji: "😱", word: "shocked" },
+{ emoji: "😴", word: "sleepy" },
+{ emoji: "😎", word: "cool" },
+{ emoji: "😕", word: "confused" },
+{ emoji: "🤔", word: "thinking" }
+];
+        let currentEmoji = '';
+
+        function loadNewEmoji() {
+            const randomIndex = Math.floor(Math.random() * emojiWords.length);
+            currentEmoji = emojiWords[randomIndex];
+            const emojiContainer = document.getElementById('emoji-container');
+            emojiContainer.innerHTML = twemoji.parse(currentEmoji.emoji);
+            document.getElementById('user-input').value = '';
+            document.getElementById('feedback-container').textContent = '';
+        }
+
+        function checkSpelling() {
+            const userInput = document.getElementById('user-input').value.trim().toLowerCase();
+            if (userInput === currentEmoji.word) {
+                document.getElementById('feedback-container').textContent = 'Correct!';
+                document.getElementById('correct-sound').play();
+                setTimeout(loadNewEmoji, 2000); // Load new emoji after 2 seconds
+            } else {
+                document.getElementById('feedback-container').textContent = 'Try again!';
+            }
+        }
+
+        window.onload = loadNewEmoji;
+    </script>
+</body>
+</html>
