@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Blockly Program</title>
+    <script src="https://unpkg.com/blockly/blockly.min.js"></script>
+</head>
+<body>
+
+
+    <label for="rendererSelector">Select Block Theme:</label>
+    <select id="rendererSelector" onchange="changeRenderer(this.value)">
+        <option value="geras">Blockly (default)</option>
+        <option value="thrasos">Blockly 2D</option>
+        <option value="zelos">Scratch Blocks</option>
+    </select>
+
+    <div id="blocklyDiv" style="height: 480px; width: 600px;"></div>
+      <xml id="toolbox" style="display: none">
+	  <category name="Events" colour="#FFD500">
+        <block type="when_green_flag_clicked"></block>
+    </category>
+        <category name="Basic" colour="#5C81A6">
+            <block type="controls_if"></block>
+            <block type="logic_compare"></block>
+            <!-- More basic blocks... -->
+        </category>
+        <category name="Loops" colour="#5CA65C">
+            <block type="controls_repeat_ext"></block>
+            <!-- More loop blocks... -->
+        </category>
+        <category name="Math" colour="#5C68A6">
+            <block type="math_number"></block>
+            <block type="math_arithmetic"></block>
+            <!-- More math blocks... -->
+        </category>
+		    <category name="JavaScript" colour="#D14081">
+        <block type="console_log"></block>
+        <block type="alert"></block>
+    </category>
+	<category name="Variables" colour="#A65C81" custom="VARIABLE"></category>
+    <!-- ... other categories and blocks ... -->
+</xml>
+
+    <textarea id="code" style="height: 200px; width: 600px;"></textarea>
+    <script src="myBlocklyApp.js"></script>
+</body>
+</html>

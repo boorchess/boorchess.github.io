@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign Up Page</title>
+  <!-- Include the reCAPTCHA Enterprise script -->
+  <script src="https://www.google.com/recaptcha/enterprise.js?render=6LcCFA8pAAAAAHssE9IZx6-VzvOMR38xMpHO6Oj-" async defer></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 0;
+    }
+
+    h1 {
+      text-align: center;
+      margin-top: 20px;
+      color: #333;
+    }
+
+    form {
+      max-width: 400px;
+      margin: 0 auto;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    label {
+      display: block;
+      margin-bottom: 10px;
+      font-weight: bold;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    .g-recaptcha {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    button {
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    /* Center the reCAPTCHA widget */
+    .g-recaptcha {
+      margin: 0 auto;
+    }
+  </style>
+</head>
+<body>
+  <h1>Sign Up</h1>
+  <form action="process_signup.php" method="POST">
+    <label for="username">Username:</label>
+    <input type="text" id="username" name="username" required>
+    
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" required>
+
+    <!-- Add the reCAPTCHA widget inside your form -->
+    <div class="g-recaptcha" data-sitekey="6LcCFA8pAAAAAHssE9IZx6-VzvOMR38xMpHO6Oj-" data-action="signup"></div>
+
+    <button type="submit" onclick="onClick(event)">Sign Up</button>
+  </form>
+
+  <!-- JavaScript function to execute reCAPTCHA on button click -->
+  <script>
+    function onClick(e) {
+      e.preventDefault();
+      grecaptcha.enterprise.ready(async () => {
+        // Execute reCAPTCHA with the specified action
+        const token = await grecaptcha.enterprise.execute('6LcCFA8pAAAAAHssE9IZx6-VzvOMR38xMpHO6Oj-', { action: 'signup' });
+        
+        // Include the token in your form submission
+        const form = document.querySelector('form');
+        const tokenInput = document.createElement('input');
+        tokenInput.type = 'hidden';
+        tokenInput.name = 'recaptcha_token';
+        tokenInput.value = token;
+        form.appendChild(tokenInput);
+        
+        // Now, submit the form
+        form.submit();
+      });
+    }
+  </script>
+</body>
+</html>
