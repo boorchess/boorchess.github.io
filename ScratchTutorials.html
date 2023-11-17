@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Scratch Tutorial</title>
+    <style>
+    .profile-button {
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 10px;
+            background-color: #4CAF50; /* Green background */
+            color: white; /* White text */
+            text-align: center;
+            text-decoration: none;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        /* CSS for the rotation animation */
+        @keyframes rotate {
+            0% { transform: rotate(-10deg); }
+            50% { transform: rotate(10deg); }
+            100% { transform: rotate(-10deg); }
+        }
+
+        /* Apply the animation to the Scratch Cat image */
+        #scratch-cat {
+            animation: rotate 2s infinite linear;
+        }
+
+  .speech-bubble {
+            position: absolute;
+            background-color: white;
+            border-radius: 10px;
+            padding: 10px;
+            box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+            width: 200px;
+            text-align: center;
+            top: 20px; /* Adjust as needed */
+            left: 200px; /* Adjust as needed */
+        }
+
+        /* Triangle part of the speech bubble */
+        .speech-bubble:after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            border-width: 10px;
+            border-style: solid;
+            border-color: white transparent transparent transparent;
+        }
+        /* Additional CSS styling */
+        /* Add your CSS styling here */
+    </style>
+</head>
+<body>
+<a href="https://scratch.mit.edu/users/Cool_Smart_Kids/" class="profile-button">My Profile</a>
+
+     <div id="scratch-cat-container">
+        <img src="https://en.scratch-wiki.info/w/images/Make_It_Fly_Cat.PNG?20190702223717" alt="Scratch Cat" id="scratch-cat" />
+        <div class="speech-bubble">Scratch Tutorials</div>
+    </div>
+    <h2>How to make a game in Scratch!</h2>
+    <div style="padding:43.44% 0 0 0;position:relative;">
+        <iframe src="https://player.vimeo.com/video/885448727?h=d9b4dfc57f&badge=0&autopause=0&quality_selector=1&player_id=0&app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="How to make a Scratch Game!"></iframe>
+    </div>
+    <script src="https://player.vimeo.com/api/player.js"></script>
+
+    <h2>Intro to Scratch</h2>
+    <div style="padding:43.23% 0 0 0;position:relative;">
+        <iframe src="https://player.vimeo.com/video/885435732?h=857a61797c&badge=0&autopause=0&quality_selector=1&player_id=0&app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Scratch Introduction"></iframe>
+    </div>
+    <script src="https://player.vimeo.com/api/player.js"></script>
+
+     <h2>Scratch Example</h2>
+    <iframe src="https://scratch.mit.edu/projects/925973583/embed" allowtransparency="true" width="485" height="402" frameborder="0" scrolling="no" allowfullscreen></iframe>
+
+    <h2>Avoid the plungers!</h2>
+    <iframe src="https://scratch.mit.edu/projects/925988352/embed" allowtransparency="true" width="485" height="402" frameborder="0" scrolling="no" allowfullscreen></iframe>
+    
+
+</body>
+</html>
