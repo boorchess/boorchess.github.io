@@ -82,42 +82,48 @@
         let score = 0;
         let currentEmoji;
 
-          const emojiWords =  [
-            { emoji: "🐶", word: "dog" },
-            { emoji: "🐱", word: "cat" },
-            { emoji: "🚗", word: "car" },
-            { emoji: "🌳", word: "tree" },
-            { emoji: "🏠", word: "house" },
-            { emoji: "👻", word: "ghost" },
-            { emoji: "🌧️", word: "rain" },
-            { emoji: "📚", word: "book" },
-            { emoji: "🎂", word: "cake" },
-            { emoji: "🚀", word: "rocket" }
-        ],
-        // Medium words (5-6 letters)
-        [
-            { emoji: "🐭", word: "mouse" },
-            { emoji: "🐰", word: "rabbit" },
-            { emoji: "🐯", word: "tiger" },
-            { emoji: "🐸", word: "frog" },
-            { emoji: "🐼", word: "panda" },
-            { emoji: "🦁", word: "lion" },
-            { emoji: "🐔", word: "chicken" },
-            { emoji: "🦉", word: "owl" },
-            { emoji: "🦄", word: "unicorn" }
-        ],
-        // Longer words (7+ letters)
-        [
-            { emoji: "😀", word: "happy" },
-            { emoji: "😂", word: "laughing" },
-            { emoji: "😍", word: "love" },
-            { emoji: "😢", word: "sad" },
-            { emoji: "😡", word: "angry" },
-            { emoji: "😱", word: "shocked" },
-            { emoji: "😴", word: "sleepy" },
-            { emoji: "😎", word: "cool" },
-            { emoji: "👍", word: "ok" }
-        ];
+const emojiWords = {
+            // Two-letter words
+            twoLetters: [
+                // Example: { emoji: "👍", word: "ok" } // if "ok" was an emoji name
+            ],
+            // Three-letter words
+            threeLetters: [
+                { emoji: "🚗", word: "car" },
+                { emoji: "🐶", word: "dog" },
+                { emoji: "🐱", word: "cat" },
+                { emoji: "🦉", word: "owl" }
+            ],
+            // Four-letter words
+            fourLetters: [
+                { emoji: "🐸", word: "frog" },
+                { emoji: "🦁", word: "lion" },
+                { emoji: "🌳", word: "tree" },
+                { emoji: "🌧️", word: "rain" },
+                { emoji: "📚", word: "book" },
+                { emoji: "🎂", word: "cake" }
+            ],
+            // Five-letter words
+            fiveLetters: [
+                { emoji: "🍎", word: "apple" },
+                { emoji: "🚀", word: "rocket" },
+                { emoji: "🏠", word: "house" },
+                { emoji: "👻", word: "ghost" },
+                { emoji: "🐭", word: "mouse" },
+                { emoji: "🐰", word: "rabbit" },
+                { emoji: "🐯", word: "tiger" },
+                { emoji: "🐼", word: "panda" },
+                { emoji: "😡", word: "angry" }
+            ],
+            // Six-letter words and more
+            sixPlusLetters: [
+                { emoji: "🐔", word: "chicken" },
+                { emoji: "😂", word: "laughing" },
+                { emoji: "😱", word: "shocked" },
+                { emoji: "😴", word: "sleepy" },
+                { emoji: "🦄", word: "unicorn" }
+            ]
+        };
 
 
         function loadNewEmoji() {
