@@ -7,6 +7,40 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cool Smart Kids</title>
     <style>
+	/* Existing CSS */
+
+/* ... */
+
+@media screen and (max-width: 768px) {
+    .sections {
+        flex-direction: column;
+    }
+
+    .section {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    .google-styled-button {
+        padding: 15px 25px; /* Bigger for easier tapping on touch screens */
+    }
+
+    header {
+        font-size: 1.5em; /* Smaller header text for mobile */
+    }
+
+    .content {
+        margin: 10px;
+        padding: 10px;
+    }
+
+    .footer {
+        font-size: 0.8em; /* Adjust footer font size for mobile */
+    }
+}
+
+/* ... */
+
         body {
             font-family: Arial, sans-serif;
             background-color: #f2f2f2;
@@ -177,23 +211,155 @@ footer {
     transition: transform 0.3s ease-in-out;
 }
 
+.burger-menu {
+    display: none;
+}
+
+.nav-links {
+    display: flex;
+    justify-content: space-around;
+}
+
+@media screen and (max-width: 768px) {
+    /* ... existing styles ... */
+
+    .burger-menu {
+        display: block;
+        position: absolute;
+        right: 20px;
+        top: 20px;
+        cursor: pointer;
+    }
+
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        right: 0;
+        top: 60px;
+        background-color: #4CAF50;
+        width: 100%;
+        text-align: center;
+    }
+
+    .nav-links a {
+        color: white;
+        padding: 10px;
+        display: block;
+    }
+}
+
+.nav-active {
+    display: flex;
+}
+
+/* Styles for Desktop */
+.burger-menu {
+    display: none;
+}
+
+.nav-links {
+    display: flex; /* or your preferred display style for desktop */
+    justify-content: space-around;
+}
+
+/* Styles for Mobile */
+@media screen and (max-width: 768px) {
+    .burger-menu {
+        display: block;
+        /* Other styling for the burger menu */
+    }
+
+    .nav-links {
+        display: none; /* Hide by default on mobile */
+        flex-direction: column;
+        /* Other styling for mobile navigation */
+    }
+
+    .nav-active {
+        display: flex; /* Show when burger menu is clicked */
+    }
+}
+
+/* Styles for Desktop */
+.burger-menu {
+    display: none;
+}
+
+.nav-links {
+    display: flex; /* Regular navigation display */
+    justify-content: space-around;
+    /* ... other styles for your desktop nav ... */
+}
+
+/* Styles for Mobile */
+@media screen and (max-width: 768px) {
+    .burger-menu {
+        display: block; /* Show the burger menu */
+        /* ... other styling for the burger menu ... */
+    }
+
+    .nav-links {
+        display: none; /* Hide by default on mobile */
+        flex-direction: column;
+        /* ... other styling for mobile nav ... */
+    }
+
+    .nav-active {
+        display: flex; /* Display when the burger menu is clicked */
+    }
+}
+/* Default styles (applied to desktop and larger screens) */
+.burger-menu {
+    display: none; /* Hide burger menu on larger screens */
+}
+
+.nav-links {
+    display: flex; /* Display navigation links on larger screens */
+    justify-content: space-around;
+    /* ... other styles for your desktop navigation ... */
+}
+
+/* Responsive styles for mobile screens */
+@media screen and (max-width: 768px) {
+    .burger-menu {
+        display: block; /* Show burger menu on smaller screens */
+        /* ... other styles for your burger menu ... */
+    }
+
+    .nav-links {
+        display: none; /* Hide navigation links by default on smaller screens */
+        flex-direction: column;
+        /* ... other styles for your mobile navigation ... */
+    }
+
+    .nav-active {
+        display: flex; /* Show navigation links when burger menu is toggled */
+    }
+}
+
 
     </style>
- <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8173921134710028"
-     crossorigin="anonymous"></script>   
 </head>
-
 <body>
     
 
 <header>
-    <img src="logo.png" alt="Logo" width="128" height="128">
-    Cool Smart Kids
+    <div class="burger-menu">
+        <span class="material-icons">menu</span>
+    </div>
+  <img src="logo.png" alt="Logo" width="128" height="128">
+    <nav class="nav-links">
+    <a href="learn.html"><span class="material-icons">school</span> Learn More</a>
+    <a href="games.html"><span class="material-icons">sports_esports</span> Play Now</a>
+    <a href="login.html"><span class="material-icons">login</span> Log In or Sign Up</a>
+</nav>
+
 </header>
+
 
 <div class="content">
     <div class="intro">
-        <div style="padding:45.71% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/885399822?h=469b251ca6&amp;badge=0&amp;autopause=0&amp;quality_selector=1&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="New Recording - 11/16/2023, 5:01:00 PM"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>
         <p>Welcome to the ultimate place for young geniuses. Explore, learn, and show off your brilliance!</p>
     </div>
 
@@ -230,6 +396,18 @@ footer {
 <footer>
     © 2023 Cool Smart Kids. All rights reserved, Made by Gibson B.
 </footer>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const burger = document.querySelector('.burger-menu');
+    const navLinks = document.querySelector('.nav-links');
+
+    burger.addEventListener('click', function () {
+        navLinks.classList.toggle('nav-active');
+    });
+});
+
+
+</script>
 
 </body>
 </html>
