@@ -134,7 +134,7 @@
                 document.getElementById('score').textContent = score;
                 const correctSound = document.getElementById('correct-sound');
                 if (correctSound) correctSound.play();
-                setTimeout(loadNewEmoji, 2000); // Load new emoji after 2 seconds
+                setTimeout(loadNewEmoji, 500); // Load new emoji after 2 seconds
             } else {
                 document.getElementById('feedback-container').textContent = 'Try again!';
             }
