@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Emoji Spelling Game</title>
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -20,7 +20,7 @@
             padding: 10px;
             width: 200px;
         }
-        #submit-button {
+        #submit-button, #skip-button {
             padding: 10px 20px;
             font-size: 20px;
             cursor: pointer;
@@ -30,8 +30,11 @@
             border-radius: 5px;
             transition: background-color 0.3s;
         }
-        #submit-button:hover {
+        #submit-button:hover, #skip-button:hover {
             background-color: #45a049; /* Darker green on hover */
+        }
+        #skip-button {
+            background-color: grey;
         }
         .material-icons {
             vertical-align: middle;
@@ -45,18 +48,6 @@
             margin-top: 20px;
             font-size: 20px;
         }
-		  #submit-button {
-            background-color: #4CAF50; /* Green background */
-        }
-        #submit-button:hover {
-            background-color: #45a049; /* Darker green on hover */
-        }
-        #skip-button {
-            background-color: #808080; /* Grey background */
-        }
-        #skip-button:hover {
-            background-color: #696969; /* Darker grey on hover */
-        }
     </style>
     <script src="https://twemoji.maxcdn.com/v/latest/twemoji.min.js" crossorigin="anonymous"></script>
 </head>
@@ -68,7 +59,7 @@
             <span class="material-icons">check_circle</span>
             Submit
         </button>
-		<button id="skip-button" class="button" onclick="loadNewEmoji()">
+        <button id="skip-button" onclick="loadNewEmoji()">
             <span class="material-icons">skip_next</span>
             Skip
         </button>
@@ -80,9 +71,11 @@
 
     <script>
         let score = 0;
+        let correctAnswers = 0;
         let currentEmoji;
+        let lastEmojiIndex = -1; // Variable to store the index of the last shown emoji
 
-const emojiWords = {
+        const emojiWordsByDifficulty = {
             // Two-letter words
             twoLetters: [
                 // Example: { emoji: "👍", word: "ok" } // if "ok" was an emoji name
@@ -125,10 +118,29 @@ const emojiWords = {
             ]
         };
 
+        let currentDifficultyLevel = 'threeLetters'; // Starting difficulty level
 
         function loadNewEmoji() {
-            const randomIndex = Math.floor(Math.random() * emojiWords.length);
-            currentEmoji = emojiWords[randomIndex];
+            // Update difficulty based on correct answers
+            if (correctAnswers >= 4) {
+                currentDifficultyLevel = 'fourLetters';
+            }
+            if (correctAnswers >= 8) {
+                currentDifficultyLevel = 'fiveLetters';
+            }
+            if (correctAnswers >= 12) {
+                currentDifficultyLevel = 'sixPlusLetters';
+            }
+
+            const emojiCategory = emojiWordsByDifficulty[currentDifficultyLevel];
+            let randomIndex;
+            do {
+                randomIndex = Math.floor(Math.random() * emojiCategory.length);
+            } while (randomIndex === lastEmojiIndex); // Ensure a new emoji is selected
+
+            lastEmojiIndex = randomIndex; // Update the last shown emoji index
+            currentEmoji = emojiCategory[randomIndex];
+
             const emojiContainer = document.getElementById('emoji-container');
             emojiContainer.innerHTML = twemoji.parse(currentEmoji.emoji);
             document.getElementById('user-input').value = '';
@@ -137,19 +149,23 @@ const emojiWords = {
 
         function checkSpelling() {
             const userInput = document.getElementById('user-input').value.trim().toLowerCase();
-            if (currentEmoji.word === userInput) {
+            if (userInput === currentEmoji.word) {
                 document.getElementById('feedback-container').textContent = 'Correct!';
                 score++;
+                correctAnswers++;
                 document.getElementById('score').textContent = score;
                 const correctSound = document.getElementById('correct-sound');
                 if (correctSound) correctSound.play();
-                setTimeout(loadNewEmoji, 500); // Load new emoji after 2 seconds
+                setTimeout(loadNewEmoji, 2000); // Load new emoji after 2 seconds
             } else {
                 document.getElementById('feedback-container').textContent = 'Try again!';
-            }
-        }
-
+      const emojiContainer = document.getElementById('emoji-container');
+            emojiContainer.innerHTML = twemoji.parse(currentEmoji.emoji);
+         }
+	}
         window.onload = loadNewEmoji;
+
+
     </script>
 </body>
 </html>
