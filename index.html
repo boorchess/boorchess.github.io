@@ -2,6 +2,29 @@
 <html lang="en">
 <head>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	
+    <!-- Web Manifest -->
+    <link rel="manifest" href="/manifest.json">
+
+    <!-- Google Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+
+    <!-- Preconnects for external services -->
+    <link rel="preconnect" href="https://firebaseremoteconfig.googleapis.com">
+    <link rel="preconnect" href="https://firestore.googleapis.com">
+    <link rel="preconnect" href="https://us-central1-graviton-mvp.cloudfunctions.net">
+    <link rel="preconnect" href="https://firebaseinstallations.googleapis.com">
+    <link rel="preconnect" href="https://firebase.googleapis.com">
+    <link rel="preconnect" href="https://aiz0q12tek-dsn.algolia.net">
+    <link rel="preconnect" href="https://analytics-cdn.flux.ai">
+    <link rel="preconnect" href="https://widget.intercom.io">
+    <link rel="preconnect" href="https://js.intercomcdn.com">
+    <link rel="preconnect" href="https://o547025.ingest.sentry.io">
+    <link rel="preconnect" href="https://www.google-analytics.com">
+    <link rel="preconnect" href="https://www.googletagmanager.com">
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
+    <link rel="preconnect" href="https://canny.io">
+    <link rel="preconnect" href="https://insights.algolia.io">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -85,22 +108,6 @@
     color: #4CAF50;  /* matching the header color for consistency */
     display: block;
     margin: 0 auto 15px auto;  /* centered icon with space below */
-}
-.google-styled-button {
-    display: inline-block;
-    background-color: #4CAF50; /* Google green */
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 4px;
-    font-size: 1em;
-    cursor: pointer;
-    text-decoration: none;
-    transition: background-color 0.3s ease;
-}
-
-.google-styled-button:hover {
-    background-color: #43a047; /* Darken the Google green a bit on hover */
 }
 
 footer {
@@ -368,14 +375,14 @@ footer {
             <span class="material-icons section-icon">book</span>
             <h2>Learn</h2>
             <p>Discover fascinating topics and expand your knowledge.</p>
-            <a href="learn.html" class="google-styled-button">Learn More</a>
+            <a href="learn.html">Learn More</a>
         </div>
         
         <div class="section">
             <span class="material-icons section-icon">sports_esports</span>
             <h2>Play</h2>
             <p>Engage in brainy games that challenge and entertain.</p>
-            <a href="games.html" class="google-styled-button">Play Now</a>
+            <a href="games.html">Play Now</a>
         </div>
         
         <!-- Inside the existing <div class="sections"> container -->
@@ -385,7 +392,7 @@ footer {
     <span class="material-icons section-icon">supervised_user_circle</span>
     <h2>Account</h2>
     <p>Access your account or view profile details.</p>
-    <a href="login.html" class="google-styled-button">Log In or Sign Up</a>
+    <a href="login.html">Log In or Sign Up</a>
 </div>
 
     </div>
