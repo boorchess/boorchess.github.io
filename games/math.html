@@ -1,0 +1,245 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Strong Smart Kids - Math Puzzle Game</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #f2f2f2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            transition: background-color 2s;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        #game-container {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        #question {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .choice {
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 10px;
+            border: 1px solid #ddd;
+            cursor: pointer;
+            transition: background-color 1s, transform 0.2s;
+            font-weight: 600;
+        }
+
+        .choice:hover {
+            background-color: #f9f9f9;
+            transform: scale(1.05);
+        }
+
+        .pulse {
+            animation: pulse 1.5s infinite alternate;
+        }
+
+        @keyframes pulse {
+            from { background-color: #fff; }
+            to { background-color: #ddd; }
+        }
+
+        #message {
+            font-size: 20px;
+            color: #4CAF50;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        #pause-button {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    font-size: 36px;
+    cursor: pointer;
+    background: none;
+    border: none;
+    color: #333;
+    opacity: 0.6;
+}
+
+    </style>
+</head>
+
+<body>
+    <div id="game-container">
+        <button id="pause-button" onclick="togglePause()">⏸</button>
+        <h1>Strong Smart Kids</h1>
+        <div id="question"></div>
+        <div id="choices"></div>
+        <div id="message"></div>
+        
+    </div>
+
+    <script>
+
+        let correctAnswer;
+        let maxChoices = 4;
+        let timer;
+        let activeChoice;
+        let paused = false;
+        let correctStreak = 0;
+        let currentOperation = "addition";
+
+        function generateQuestion() {
+            clearTimeout(timer);
+            let num1 = Math.floor(Math.random() * 10) + 1;
+            let num2 = Math.floor(Math.random() * 10) + 1;
+
+            switch (currentOperation) {
+                case "addition":
+                    correctAnswer = num1 + num2;
+                    document.getElementById('question').innerText = `${num1} + ${num2} = ?`;
+                    break;
+                case "subtraction":
+                    correctAnswer = num1 - num2;
+                    document.getElementById('question').innerText = `${num1} - ${num2} = ?`;
+                    break;
+                case "multiplication":
+                    correctAnswer = num1 * num2;
+                    document.getElementById('question').innerText = `${num1} × ${num2} = ?`;
+                    break;
+                case "division":
+                    let divisor = Math.floor(Math.random() * 9) + 1;
+                    let dividend = Math.floor(Math.random() * 90) + 10;
+                    while (dividend % divisor !== 0) {
+                        divisor = Math.floor(Math.random() * 9) + 1;
+                        dividend = Math.floor(Math.random() * 90) + 10;
+                    }
+                    correctAnswer = dividend / divisor;
+                    document.getElementById('question').innerText = `${dividend} ÷ ${divisor} = ?`;
+                    break;
+            }
+            displayChoices();
+            activeChoice = document.getElementById('choices').lastChild;
+            if (!paused) {
+                startPulsing();
+                setTimer();
+            }
+        }
+
+        function displayChoices() {
+            let choices = [correctAnswer];
+            while (choices.length < maxChoices) {
+                let randomChoice = Math.floor(Math.random() * 20) + 1;
+                if (!choices.includes(randomChoice)) {
+                    choices.push(randomChoice);
+                }
+            }
+            choices = choices.sort(() => 0.5 - Math.random());
+
+            const choicesDiv = document.getElementById('choices');
+            choicesDiv.innerHTML = '';
+            choices.forEach(choice => {
+                let choiceEl = document.createElement('div');
+                choiceEl.className = 'choice';
+                choiceEl.innerText = choice;
+                choiceEl.onclick = () => checkAnswer(choiceEl);
+                choicesDiv.appendChild(choiceEl);
+            });
+        }
+
+        function setTimer() {
+            if (!paused) {
+                timer = setTimeout(() => {
+                    wrongAnswer();
+                }, 3000);
+            }
+        }
+
+        function startPulsing() {
+            if (!paused) {
+                activeChoice.classList.add('pulse');
+            }
+        }
+
+        function checkAnswer(choiceElement) {
+            clearTimeout(timer);
+            activeChoice.classList.remove('pulse');
+            if (parseInt(choiceElement.innerText) === correctAnswer) {
+                document.getElementById('message').innerText = "Correct!";
+                correctStreak++;
+                if (correctStreak === 20) {
+                    if (currentOperation === "division") {
+                        document.getElementById('message').innerText = "Congratulations! You've mastered all operations!";
+                        setTimeout(() => {
+                            document.body.style.backgroundColor = "white";
+                        }, 3000);
+                        return;
+                    }
+                    switch (currentOperation) {
+                        case "addition":
+                            currentOperation = "subtraction";
+                            break;
+                        case "subtraction":
+                            currentOperation = "multiplication";
+                            break;
+                        case "multiplication":
+                            currentOperation = "division";
+                            break;
+                    }
+                    correctStreak = 0;
+                    maxChoices = 4;
+                }
+                if (maxChoices < 20) {
+                    maxChoices++;
+                }
+                setTimeout(generateQuestion, 2000);
+            } else {
+                wrongAnswer();
+            }
+        }
+
+        function wrongAnswer() {
+            document.getElementById('message').innerText = "Incorrect. Try again.";
+            if (maxChoices > 4) {
+                maxChoices--;
+            }
+            displayChoices();
+            activeChoice = document.getElementById('choices').lastChild;
+            if (!paused) {
+                startPulsing();
+                setTimer();
+            }
+        }
+
+        document.addEventListener('keydown', function(event) {
+            if (event.code === 'Space') {
+                paused = !paused;
+                if (paused) {
+                    clearTimeout(timer);
+                    activeChoice.classList.remove('pulse');
+                } else {
+                    startPulsing();
+                    setTimer();
+                }
+                event.preventDefault(); // Prevents browser default behavior like scrolling when pressing space
+            }
+        });
+
+        generateQuestion();
+    </script>
+</body>
+</html>
