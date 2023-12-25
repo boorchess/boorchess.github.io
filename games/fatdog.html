@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <title>Calorie Intake & Weight Loss Math Game</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+    <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+    <script src="https://code.responsivevoice.org/responsivevoice.js?key=XvhuDFiz"></script>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+      }
+
+      .container {
+        text-align: center;
+        margin-top: 50px;
+      }
+
+      #problem {
+        font-size: 20px;
+        margin-bottom: 20px;
+      }
+
+      #speaker {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        cursor: pointer;
+        color: #007bff;
+      }
+
+      .mdl-button--raised.mdl-js-ripple-effect {
+        background-color: #007bff;
+        color: white;
+      }
+
+      .mdl-button--raised.mdl-js-ripple-effect:hover {
+        background-color: #0056b3;
+      }
+
+      #notification {
+        position: fixed;
+        top: 10px;
+        right: 10px;
+        background-color: rgba(0, 0, 0, 0.7);
+        color: white;
+        padding: 10px;
+        border-radius: 5px;
+        display: none;
+      }
+
+    </style>
+  </head>
+
+  <body>
+    <i class="material-icons" id="speaker" onclick="toggleTextToSpeech()">volume_up</i>
+    <div class="container">
+      <h2>Calorie Intake & Weight Loss Math Game</h2>
+      <div id="customization">
+        <input type="text" id="petName" class="mdl-textfield__input" placeholder="Enter your pet's name">
+        <label for="petType">Select your pet type:</label>
+        <select id="petType">
+          <option value="dog">Dog</option>
+          <option value="cat">Cat</option>
+        </select>
+        <label for="gender">Select gender:</label>
+        <select id="gender">
+          <option value="male">Male</option>
+          <option value="female">Female</option>
+        </select>
+        <div>
+          <label for="colorPicker">Choose your pet's color:</label>
+          <input type="color" id="colorPicker">
+        </div>
+      </div>
+      <button id="continueButton" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect" onclick="customizePet()">Continue</button>
+      <p id="problem" style="display: none;"></p>
+      <input type="number" id="userAnswer" class="mdl-textfield__input" placeholder="Enter your answer" style="display: none;">
+      <button id="submitBtn" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect" onclick="checkAnswer()" style="display: none;">Submit</button>
+      <div id="result" style="display: none;"></div>
+      <div id="notification"></div>
+    </div>
+
+    <script>
+      var initialWeight, weightLoss, requiredDailyIntake;
+      var textToSpeechEnabled = true;
+
+      var petName = "Fat Dog";
+      var petType = "dog";
+      var petGender = "male";
+      var petColor = "#ffffff";
+
+      function generateProblem() {
+        initialWeight = Math.floor(Math.random() * 50) + 80;
+        weightLoss = Math.floor(Math.random() * 20) + 1;
+
+        requiredDailyIntake = initialWeight - (initialWeight - weightLoss); // Calculate the required intake for weight loss
+
+        var genderText = petGender === "male" ? "He" : "She";
+        var problemText = "Doctor David Says " + petName + " is overweight. " + genderText + " currently weighs " + initialWeight + " pounds. Proper weight is " + (initialWeight - weightLoss) + " pounds. How many pounds does " + petName + " need to lose?";
+        document.getElementById("problem").innerHTML = problemText;
+
+        if (textToSpeechEnabled) {
+          responsiveVoice.speak(problemText, "US English Female");
+        }
+      }
+
+
+      function customizePet() {
+        petName = document.getElementById("petName").value || "Fat Dog";
+        petType = document.getElementById("petType").value;
+        petGender = document.getElementById("gender").value;
+        petColor = document.getElementById("colorPicker").value;
+
+        document.getElementById("customization").style.display = "none";
+        document.getElementById("continueButton").style.display = "none";
+        document.getElementById("problem").style.display = "block";
+        document.getElementById("userAnswer").style.display = "block";
+        document.getElementById("submitBtn").style.display = "block";
+
+        generateProblem();
+      }
+
+      function checkAnswer() {
+        var userAnswer = parseFloat(document.getElementById("userAnswer").value);
+        var isCorrect = userAnswer === requiredDailyIntake;
+
+        var notification = document.getElementById("notification");
+        notification.style.display = "block";
+        notification.textContent = isCorrect ? "✅ Correct!" : "❌ Wrong. The correct answer is " + requiredDailyIntake + ".";
+
+        if (isCorrect) {
+          responsiveVoice.speak("Correct! Good job!", "US English Female");
+        } else {
+          responsiveVoice.speak("Incorrect. The correct answer is " + requiredDailyIntake + ".", "US English Female");
+        }
+
+        setTimeout(function() {
+          notification.style.display = "none";
+          generateProblem();
+          document.getElementById("userAnswer").value = "";
+        }, 3000);
+      }
+
+      function toggleTextToSpeech() {
+        textToSpeechEnabled = !textToSpeechEnabled;
+        if (textToSpeechEnabled) {
+          document.getElementById("speaker").textContent = "volume_up";
+          generateProblem();
+        } else {
+          document.getElementById("speaker").textContent = "volume_off";
+          responsiveVoice.cancel();
+        }
+      }
+
+    </script>
+  </body>
+
+</html>
