@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Interactive Cartesian Coordinate System</title>
+<style>
+  body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f7f7f7;
+  }
+  canvas {
+    border: 1px solid black;
+  }
+</style>
+</head>
+<body>
+
+<canvas id="cartesianCanvas" width="800" height="600"></canvas>
+
+<script>
+  const canvas = document.getElementById('cartesianCanvas');
+  const ctx = canvas.getContext('2d');
+  const width = canvas.width;
+  const height = canvas.height;
+  const unit = 50; // Change unit size as needed
+  const axisColor = "#000";
+  const gridColor = "#e8e8e8";
+  const numberColor = "#000";
+  const pointColor = "#f00";
+  const origin = { x: width / 2, y: height / 2 };
+
+  canvas.addEventListener('click', function(event) {
+    const rect = canvas.getBoundingClientRect();
+    const x = event.clientX - rect.left - origin.x;
+    const y = origin.y - (event.clientY - rect.top);
+    placePoint(x, y);
+  });
+
+  function drawGrid() {
+    ctx.beginPath();
+    for (let x = 0; x <= width; x += unit) {
+      ctx.moveTo(x, 0);
+      ctx.lineTo(x, height);
+    }
+    for (let y = 0; y <= height; y += unit) {
+      ctx.moveTo(0, y);
+      ctx.lineTo(width, y);
+    }
+    ctx.strokeStyle = gridColor;
+    ctx.stroke();
+  }
+
+  function drawAxes() {
+    ctx.beginPath();
+    ctx.moveTo(origin.x, 0);
+    ctx.lineTo(origin.x, height);
+    ctx.moveTo(0, origin.y);
+    ctx.lineTo(width, origin.y);
+    ctx.strokeStyle = axisColor;
+    ctx.stroke();
+  }
+
+  function drawNumbers() {
+    ctx.fillStyle = numberColor;
+    ctx.textAlign = "center";
+    ctx.textBaseline = "middle";
+
+    // Draw numbers on X axis
+    for (let x = unit; x < width; x += unit) {
+      let value = (x - origin.x) / unit;
+      if (value !== 0) {
+        ctx.fillText(value, x, origin.y + 15); // Adjust text position as needed
+      }
+    }
+
+    // Draw numbers on Y axis
+    for (let y = unit; y < height; y += unit) {
+      let value = (origin.y - y) / unit;
+      if (value !== 0) {
+        ctx.fillText(value, origin.x - 15, y); // Adjust text position as needed
+      }
+    }
+  }
+
+  function placePoint(x, y) {
+    ctx.fillStyle = pointColor;
+    ctx.beginPath();
+    ctx.arc(origin.x + x, origin.y - y, 5, 0, Math.PI * 2);
+    ctx.fill();
+
+    // Display the coordinates
+    const coords = `(${(x / unit).toFixed(1)}, ${(y / unit).toFixed(1)})`;
+    ctx.fillText(coords, origin.x + x + 15, origin.y - y - 15);
+  }
+
+  // Call the functions to draw the grid, axes, and numbers
+  drawGrid();
+  drawAxes();
+  drawNumbers();
+</script>
+</body>
+</html>
