@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Giant Family Emoji</title>
+<style>
+    body, html {
+        height: 100%;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .giant-emoji {
+        font-size: 10em; /* Adjust the font size as needed */
+    }
+    .warning-banner {
+        background-color: #ff7f7f;
+        color: white;
+        padding: 10px;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+</style>
+</head>
+<body>
+
+<div class="warning-banner">
+    ⚠️ Skin tones are only displayed on Windows and Facebook, other platforms won't work! ⚠️
+</div>
+<div>
+    <label for="familyType">Select Family Type:</label>
+    <select id="familyType" onchange="updateEmoji()">
+        <option value="👨‍👩‍👦">Man Woman Boy</option>
+        <option value="👨‍👩‍👦🏻">Man Woman Boy (Light Skin Tone)</option>
+        <option value="👨‍👩‍👦🏼">Man Woman Boy (Medium-Light Skin Tone)</option>
+        <option value="👨‍👩‍👦🏽">Man Woman Boy (Medium Skin Tone)</option>
+        <option value="👨‍👩‍👦🏾">Man Woman Boy (Medium-Dark Skin Tone)</option>
+        <option value="👨‍👩‍👦🏿">Man Woman Boy (Dark Skin Tone)</option>
+        
+        <option value="👨‍👩‍👧">Man Woman Girl</option>
+        <option value="👨‍👩‍👧🏻">Man Woman Girl (Light Skin Tone)</option>
+        <option value="👨‍👩‍👧🏼">Man Woman Girl (Medium-Light Skin Tone)</option>
+        <option value="👨‍👩‍👧🏽">Man Woman Girl (Medium Skin Tone)</option>
+        <option value="👨‍👩‍👧🏾">Man Woman Girl (Medium-Dark Skin Tone)</option>
+        <option value="👨‍👩‍👧🏿">Man Woman Girl (Dark Skin Tone)</option>
+        
+        <option value="👨‍👩‍👧‍👦">Man Woman Girl Boy</option>
+        <option value="👨‍👩‍👧‍👦🏻">Man Woman Girl Boy (Light Skin Tone)</option>
+        <option value="👨‍👩‍👧‍👦🏼">Man Woman Girl Boy (Medium-Light Skin Tone)</option>
+        <option value="👨‍👩‍👧‍👦🏽">Man Woman Girl Boy (Medium Skin Tone)</option>
+        <option value="👨‍👩‍👧‍👦🏾">Man Woman Girl Boy (Medium-Dark Skin Tone)</option>
+        <option value="👨‍👩‍👧‍👦🏿">Man Woman Girl Boy (Dark Skin Tone)</option>
+        
+        <option value="👨‍👩‍👦‍👦">Man Woman Boy Boy</option>
+        <option value="👨‍👩‍👦‍👦🏻">Man Woman Boy Boy (Light Skin Tone)</option>
+        <option value="👨‍👩‍👦‍👦🏼">Man Woman Boy Boy (Medium-Light Skin Tone)</option>
+        <option value="👨‍👩‍👦‍👦🏽">Man Woman Boy Boy (Medium Skin Tone)</option>
+        <option value="👨‍👩‍👦‍👦🏾">Man Woman Boy Boy (Medium-Dark Skin Tone)</option>
+        <option value="👨‍👩‍👦‍👦🏿">Man Woman Boy Boy (Dark Skin Tone)</option>
+        
+        <option value="👨‍👩‍👧‍👧">Man Woman Girl Girl</option>
+        <option value="👨‍👩‍👧‍👧🏻">Man Woman Girl Girl (Light Skin Tone)</option>
+        <option value="👨‍👩‍👧‍👧🏼">Man Woman Girl Girl (Medium-Light Skin Tone)</option>
+        <option value="👨‍👩‍👧‍👧🏽">Man Woman Girl Girl (Medium Skin Tone)</option>
+        <option value="👨‍👩‍👧‍👧🏾">Man Woman Girl Girl (Medium-Dark Skin Tone)</option>
+        <option value="👨‍👩‍👧‍👧🏿">Man Woman Girl Girl (Dark Skin Tone)</option>
+    </select>
+</div>
+
+<div class="giant-emoji" id="familyEmoji">👨‍👩‍👦</div>
+
+<script>
+    function updateEmoji() {
+        var familyType = document.getElementById("familyType").value;
+        document.getElementById("familyEmoji").innerText = familyType;
+    }
+</script>
+
+</body>
+</html>
+
