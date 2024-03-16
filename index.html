@@ -1,12 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    
-    <title>Cool Smart Kidz</title>
-	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-
-    <style>
-	/* Existing CSS */
+<style>/* Existing CSS */
 
 /* ... */
 .glossy-fade-button {
@@ -344,74 +339,94 @@ footer {
         display: flex; /* Show navigation links when burger menu is toggled */
     }
 }
+.update-banner {
+    background-color: yellow; /* Banner background color */
+    color: black; /* Text color */
+    text-align: center; /* Center the text inside the banner */
+    padding: 10px 0; /* Add some padding above and below the text */
+    font-weight: bold; /* Make the text bold */
+    font-size: 16px; /* Adjust the font size as needed */
+    width: 100%; /* Ensure the banner spans the full width of the viewport */
+    position: fixed; /* Fix the banner at the top of the viewport */
+    top: 0; /* Position the banner at the very top of the page */
+    z-index: 1000; /* Ensure the banner stays on top of other content */
+    display: flex; /* Use flexbox for alignment */
+    justify-content: center; /* Center items horizontally */
+    align-items: center; /* Center items vertically */
+}
 
-
-    </style>
+body {
+    padding-top: 50px; /* Add padding to the top of the body to prevent content from being hidden under the banner */
+}
+.update-banner img {
+    height: 1em; /* This makes the emoji's height match the current font size */
+    width: auto; /* This ensures the aspect ratio of the emoji is maintained */
+    vertical-align: middle; /* This aligns the emoji with the middle of the text, which looks better in most cases */
+}
+</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cool Smart Kidz</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="styles.css"> <!-- External CSS for cleaner HTML -->
+    <script src="https://cdn.jsdelivr.net/npm/twemoji@13.0.1/dist/twemoji.min.js"></script>
 </head>
 <body>
-    
-
-<header>
-    <div class="burger-menu">
-        <span class="material-icons">menu</span>
-    </div>
-  <img src="logo.png" alt="Logo" width="128" height="128">
-    <nav class="nav-links">
-    <a href="learn.html"><span class="material-icons">school</span> Learn More</a>
-    <a href="games.html"><span class="material-icons">sports_esports</span> Play Now</a>
-    <a href="login.html"><span class="material-icons">login</span> Log In or Sign Up</a>
-</nav>
-
-</header>
-
-
-<div class="content">
-    <div class="intro">
-        <p>Welcome to the ultimate place for young geniuses. Explore, learn, and show off your brilliance!</p>
-    </div>
-
-    <div class="sections">
-        <div class="section">
-            <span class="material-icons section-icon">book</span>
-            <h2>Learn</h2>
-            <p>Discover fascinating topics and expand your knowledge.</p>
-            <a href="learn.html">
-<button class="glossy-fade-button">Learn More</button></a>
+    <header>
+        <div class="burger-menu">
+            <span class="material-icons">menu</span>
         </div>
-        
-        <div class="section">
-            <span class="material-icons section-icon">sports_esports</span>
-            <h2>Play</h2>
-            <p>Engage in brainy games that challenge and entertain.</p>
-            <a href="games.html">
-<button class="glossy-fade-button">Play Now</button></a>
+        <img src="logo.png" alt="Cool Smart Kidz Logo" width="128" height="128">
+        <nav class="nav-links">
+            <a href="learn.html"><span class="material-icons">school</span> Learn More</a>
+            <a href="games.html"><span class="material-icons">sports_esports</span> Play Now</a>
+            <a href="login.html"><span class="material-icons">login</span> Log In or Sign Up</a>
+        </nav>
+    </header>
+<body>
+   <div class="update-banner">🤫 A big update will happen in sometime.</div>
+
+    <!-- The rest of your HTML content follows... -->
+</body>
+
+
+    <div class="content">
+        <div class="intro">
+            <p>Welcome to the ultimate place for young geniuses. Explore, learn, and show off your brilliance!</p>
         </div>
-        
-        <!-- Inside the existing <div class="sections"> container -->
-
-<!-- Account Section -->
-<div class="section">
-    <span class="material-icons section-icon">supervised_user_circle</span>
-    <h2>Account</h2>
-    <p>Access your account or view profile details.</p>
-    <a href="login.html">
-<button class="glossy-fade-button">LOG IN/SIGN UP</button></a>
-</div>
-
+        <div class="sections">
+            <div class="section">
+                <span class="material-icons section-icon">book</span>
+                <h2>Learn</h2>
+                <p>Discover fascinating topics and expand your knowledge.</p>
+                <a href="learn.html"><button class="glossy-fade-button">Learn More</button></a>
+            </div>
+            <div class="section">
+                <span class="material-icons section-icon">sports_esports</span>
+                <h2>Play</h2>
+                <p>Engage in brainy games that challenge and entertain.</p>
+                <a href="games.html"><button class="glossy-fade-button">Play Now</button></a>
+            </div>
+            <div class="section">
+                <span class="material-icons section-icon">supervised_user_circle</span>
+                <h2>Account</h2>
+                <p>Access your account or view profile details.</p>
+                <a href="login.html"><button class="glossy-fade-button">LOG IN/SIGN UP</button></a>
+            </div>
+        </div>
     </div>
-    
-    
-</div>
-
-<footer>
-    © 2023 - 2024 Cool Smart Kidz. All rights reserved, Made by <a href="https://boorgibson7.wixsite.com/gibson">Gibson B</a>
-</footer>
+    <footer>
+        © 2023 - 2024 Cool Smart Kidz. All rights reserved, Made by <a href="https://boorgibson7.wixsite.com/gibson">Gibson B</a>
+    </footer>
 <script>
-document.addEventListener('DOMContentLoaded', function () {
+    document.addEventListener('DOMContentLoaded', function () {
+        twemoji.parse(document.body);
+    });
+    document.addEventListener('DOMContentLoaded', () => {
     const burger = document.querySelector('.burger-menu');
     const navLinks = document.querySelector('.nav-links');
 
-    burger.addEventListener('click', function () {
+    burger.addEventListener('click', () => {
         navLinks.classList.toggle('nav-active');
     });
 });
@@ -419,5 +434,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 </script>
 
+<!-- External JavaScript for cleaner HTML -->
 </body>
 </html>
+
