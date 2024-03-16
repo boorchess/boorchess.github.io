@@ -9,6 +9,30 @@
 	/* Existing CSS */
 
 /* ... */
+.glossy-fade-button {
+  padding: 10px 30px;
+  border: 2px solid #27ae60; /* Initial border color */
+  background-image: linear-gradient(to bottom, #2ecc71 0%, #27ae60 51%, #2ecc71 100%); /* Initial glossy effect */
+  border-radius: 5px; /* Rounded corners */
+  color: white; /* Text color */
+  font-family: Arial, sans-serif;
+  text-transform: uppercase;
+  font-size: 16px;
+  cursor: pointer;
+  outline: none;
+  transition: background-image 0.1s ease, border-color 0.1s ease; /* Smooth transition for the glossy effect and border color */
+}
+
+.glossy-fade-button:hover {
+  background-image: linear-gradient(to bottom, #2eff72 0%, #2bcc60 51%, #2eff72 100%); /* Lighter glossy effect on hover */
+  border-color: #2bcc60; /* Lighter border on hover */
+}
+
+.glossy-fade-button:active {
+  background-image: linear-gradient(to bottom, #29a65a 0%, #1e8c4e 51%, #29a65a 100%); /* Darker glossy effect on click */
+  border-color: #1e8c4e; /* Darker border on click */
+  transition: background-image 0.1s ease, border-color 0.1s ease; /* Ensuring the transition applies during the active state as well */
+}
 
 @media screen and (max-width: 768px) {
     .sections {
@@ -351,14 +375,16 @@ footer {
             <span class="material-icons section-icon">book</span>
             <h2>Learn</h2>
             <p>Discover fascinating topics and expand your knowledge.</p>
-            <a href="learn.html">Learn More</a>
+            <a href="learn.html">
+<button class="glossy-fade-button">Learn More</button></a>
         </div>
         
         <div class="section">
             <span class="material-icons section-icon">sports_esports</span>
             <h2>Play</h2>
             <p>Engage in brainy games that challenge and entertain.</p>
-            <a href="games.html">Play Now</a>
+            <a href="games.html">
+<button class="glossy-fade-button">Play Now</button></a>
         </div>
         
         <!-- Inside the existing <div class="sections"> container -->
@@ -368,7 +394,8 @@ footer {
     <span class="material-icons section-icon">supervised_user_circle</span>
     <h2>Account</h2>
     <p>Access your account or view profile details.</p>
-    <a href="login.html">Log In or Sign Up</a>
+    <a href="login.html">
+<button class="glossy-fade-button">LOG IN/SIGN UP</button></a>
 </div>
 
     </div>
