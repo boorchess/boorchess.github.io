@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learn Spanish Game</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        h1 {
+            color: #333;
+        }
+        #question {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        #options button {
+            font-size: 18px;
+            margin: 10px;
+            padding: 10px 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Learn Spanish Game</h1>
+    <p id="question"></p>
+    <div id="options"></div>
+    <p id="result"></p>
+
+    <script>
+        const questions = [
+            {
+                question: "How do you say 'Hello' in Spanish?",
+                options: ["Adiós", "Hola", "Gracias", "Por favor"],
+                answer: "Hola"
+            },
+            {
+                question: "What is the Spanish word for 'Thank you'?",
+                options: ["Hola", "Gracias", "Por favor", "Bien"],
+                answer: "Gracias"
+            },
+            {
+                question: "How do you say 'Goodbye' in Spanish?",
+                options: ["Hola", "Gracias", "Adiós", "Por favor"],
+                answer: "Adiós"
+            },
+            {
+                question: "What is the Spanish word for 'Yes'?",
+                options: ["No", "Sí", "Gracias", "Hola"],
+                answer: "Sí"
+            },
+            {
+                question: "How do you say 'No' in Spanish?",
+                options: ["Sí", "Gracias", "No", "Adiós"],
+                answer: "No"
+            },
+            {
+                question: "What is the Spanish word for 'Please'?",
+                options: ["Gracias", "Por favor", "Hola", "Adiós"],
+                answer: "Por favor"
+            },
+            {
+                question: "How do you say 'Good morning' in Spanish?",
+                options: ["Buenas noches", "Buenas tardes", "Buenas días", "Buenas"],
+                answer: "Buenos días"
+            },
+            {
+                question: "What is the Spanish word for 'Good afternoon'?",
+                options: ["Buenos días", "Buenas noches", "Buenas tardes", "Buenas"],
+                answer: "Buenas tardes"
+            },
+            {
+                question: "How do you say 'Good night' in Spanish?",
+                options: ["Buenas tardes", "Buenos días", "Buenas", "Buenas noches"],
+                answer: "Buenas noches"
+            },
+            {
+                question: "What is the Spanish word for 'How are you'?",
+                options: ["¿Cómo estás?", "¿Qué tal?", "¿Qué pasa?", "¿Cómo te llamas?"],
+                answer: "¿Cómo estás?"
+            },
+            {
+                question: "How do you say 'My name is' in Spanish?",
+                options: ["¿Cómo te llamas?", "Me llamo", "¿Cuál es tu nombre?", "Soy"],
+                answer: "Me llamo"
+            },
+            {
+                question: "What is the Spanish word for 'friend'?",
+                options: ["Hermano", "Amigo", "Padre", "Primo"],
+                answer: "Amigo"
+            },
+            {
+                question: "How do you say 'family' in Spanish?",
+                options: ["Amigos", "Hermanos", "Familia", "Parientes"],
+                answer: "Familia"
+            }
+        ];
+
+        let currentQuestion = 0;
+        let score = 0;
+        const questionElement = document.getElementById("question");
+        const optionsElement = document.getElementById("options");
+        const resultElement = document.getElementById("result");
+        const synth = window.speechSynthesis;
+
+        function showQuestion() {
+            questionElement.textContent = questions[currentQuestion].question;
+            optionsElement.innerHTML = "";
+            questions[currentQuestion].options.forEach(option => {
+                const button = document.createElement("button");
+                button.textContent = option;
+                button.addEventListener("click", checkAnswer);
+                optionsElement.appendChild(button);
+            });
+        }
+
+        function checkAnswer(e) {
+            const selectedAnswer = e.target.textContent;
+            if (selectedAnswer === questions[currentQuestion].answer) {
+                resultElement.textContent = "Correct!";
+                score++;
+                speakSpanish(selectedAnswer);
+            } else {
+                resultElement.textContent = `Incorrect. The correct answer is: ${questions[currentQuestion].answer}`;
+                speakSpanish(questions[currentQuestion].answer);
+            }
+            currentQuestion++;
+            if (currentQuestion < questions.length) {
+                showQuestion();
+            } else {
+                showFinalMessage();
+            }
+        }
+
+        function showFinalMessage() {
+            questionElement.textContent = "You have completed the game!";
+            optionsElement.innerHTML = "";
+            if (score === questions.length) {
+                resultElement.textContent = "Congratulations! You got all the answers right!";
+            } else {
+                resultElement.textContent = `Your score: ${score}/${questions.length}. Keep practicing!`;
+            }
+        }
+
+        function speakSpanish(text) {
+            const utterance = new SpeechSynthesisUtterance(text);
+            utterance.lang = "es-ES";
+            synth.speak(utterance);
+        }
+
+        showQuestion();
+    </script>
+</body>
+</html>
