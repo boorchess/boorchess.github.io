@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Multiplayer Pong Game</title>
+<style>
+    /* CSS for styling */
+    canvas {
+        border: 1px solid black;
+        display: block;
+        margin: 0 auto;
+    }
+</style>
+</head>
+<body>
+<canvas id="gameCanvas" width="800" height="400"></canvas>
+
+<script>
+    const canvas = document.getElementById('gameCanvas');
+    const ctx = canvas.getContext('2d');
+    let paddle1Y = canvas.height / 2 - 50;
+    let paddle2Y = canvas.height / 2 - 50;
+    let ballX = canvas.width / 2;
+    let ballY = canvas.height / 2;
+    let ballSpeedX = 5;
+    let ballSpeedY = 5;
+    const socket = new WebSocket('ws://localhost:3000');
+
+    socket.onmessage = function(event) {
+        const data = JSON.parse(event.data);
+        paddle1Y = data.paddle1Y;
+        paddle2Y = data.paddle2Y;
+        ballX = data.ballX;
+        ballY = data.ballY;
+    };
+
+    function sendInput(input) {
+        socket.send(JSON.stringify({ input: input }));
+    }
+
+    function drawPaddles() {
+        ctx.fillRect(0, paddle1Y, 10, 100); // Left paddle
+        ctx.fillRect(canvas.width - 10, paddle2Y, 10, 100); // Right paddle
+    }
+
+    function drawBall() {
+        ctx.beginPath();
+        ctx.arc(ballX, ballY, 10, 0, Math.PI * 2);
+        ctx.fill();
+    }
+
+    function gameLoop() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        drawPaddles();
+        drawBall();
+
+        sendInput({ paddle1Y: paddle1Y, paddle2Y: paddle2Y });
+
+        requestAnimationFrame(gameLoop);
+    }
+
+    document.addEventListener('keydown', function(event) {
+        if (event.key === 'ArrowUp') {
+            paddle2Y -= 10;
+        } else if (event.key === 'ArrowDown') {
+            paddle2Y += 10;
+        }
+    });
+
+    gameLoop();
+</script>
+
+<script>
+    const WebSocket = require('ws');
+    const http = require('http');
+    const fs = require('fs');
+
+    const server = http.createServer((req, res) => {
+        if (req.url === '/') {
+            fs.readFile('index.html', (err, data) => {
+                if (err) {
+                    res.writeHead(500);
+                    return res.end('Error loading index.html');
+                }
+                res.writeHead(200);
+                res.end(data);
+            });
+        }
+    });
+
+    const wss = new WebSocket.Server({ server });
+
+    let paddle1Y = 150;
+    let paddle2Y = 150;
+    let ballX = 400;
+    let ballY = 200;
+    let ballSpeedX = 5;
+    let ballSpeedY = 5;
+
+    wss.on('connection', function connection(ws) {
+        console.log('Client connected');
+
+        ws.on('message', function incoming(message) {
+            const data = JSON.parse(message);
+            paddle1Y = data.paddle1Y;
+            paddle2Y = data.paddle2Y;
+        });
+
+        function sendGameState() {
+            const gameState = {
+                paddle1Y: paddle1Y,
+                paddle2Y: paddle2Y,
+                ballX: ballX,
+                ballY: ballY
+            };
+            wss.clients.forEach(function each(client) {
+                if (client.readyState === WebSocket.OPEN) {
+                    client.send(JSON.stringify(gameState));
+                }
+            });
+        }
+
+        function updateGameState() {
+            ballX += ballSpeedX;
+            ballY += ballSpeedY;
+
+            if (ballY < 0 || ballY > 400) {
+                ballSpeedY = -ballSpeedY;
+            }
+
+            if ((ballX < 15 && ballY > paddle1Y && ballY < paddle1Y + 100) || 
+                (ballX > 785 && ballY > paddle2Y && ballY < paddle2Y + 100)) {
+                ballSpeedX = -ballSpeedX;
+            }
+
+            sendGameState();
+        }
+
+        setInterval(updateGameState, 1000 / 60);
+
+        ws.on('close', function close() {
+            console.log('Client disconnected');
+        });
+    });
+
+    server.listen(3000, () => {
+        console.log('Server running on port 3000');
+    });
+</script>
+</body>
+</html>
