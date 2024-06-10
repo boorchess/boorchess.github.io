@@ -225,7 +225,7 @@
 
             // Sign-Up Function
             document.getElementById('signup-form').addEventListener('submit', function (e) {
-                e.preventDefault();
+                e.preventDefault(); // Prevent form submission
                 const email = document.getElementById('signup-email').value;
                 const password = document.getElementById('signup-password').value;
                 auth.createUserWithEmailAndPassword(email, password)
@@ -241,7 +241,7 @@
 
             // Log-In Function
             document.getElementById('login-form').addEventListener('submit', function (e) {
-                e.preventDefault();
+                e.preventDefault(); // Prevent form submission
                 const email = document.getElementById('login-email').value;
                 const password = document.getElementById('login-password').value;
                 auth.signInWithEmailAndPassword(email, password)
@@ -277,3 +277,4 @@
     </script>
 </body>
 </html>
+
