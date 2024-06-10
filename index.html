@@ -7,7 +7,25 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="styles.css"> <!-- External CSS for cleaner HTML -->
     <script src="https://cdn.jsdelivr.net/npm/twemoji@13.0.1/dist/twemoji.min.js"></script>
-
+    <!-- Firebase App (the core Firebase SDK) -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app.js"></script>
+    <!-- Firebase Authentication -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth.js"></script>
+    <!-- Initialize Firebase -->
+    <script>
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyDwP21lUS2XHniMhrOXBw2X0U1oQmZ8S2A",
+            authDomain: "cool-smart-kids.firebaseapp.com",
+            projectId: "cool-smart-kids",
+            storageBucket: "cool-smart-kids.appspot.com",
+            messagingSenderId: "471545141559",
+            appId: "1:471545141559:web:51bd3d14489c4628ae22b2",
+            measurementId: "G-LXTHH9V7BR"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+    </script>
     <style>
         /* Existing CSS */
         .glossy-fade-button {
@@ -23,277 +41,48 @@
             outline: none;
             transition: background-image 0.1s ease, border-color 0.1s ease;
         }
-
-        .glossy-fade-button:hover {
-            background-image: linear-gradient(to bottom, #2eff72 0%, #2bcc60 51%, #2eff72 100%);
-            border-color: #2bcc60;
-        }
-
-        .glossy-fade-button:active {
-            background-image: linear-gradient(to bottom, #29a65a 0%, #1e8c4e 51%, #29a65a 100%);
-            border-color: #1e8c4e;
-            transition: background-image 0.1s ease, border-color 0.1s ease;
-        }
-
-        @media screen and (max-width: 768px) {
-            .sections {
-                flex-direction: column;
-            }
-
-            .section {
-                width: 100%;
-                margin-bottom: 20px;
-            }
-
-            .google-styled-button {
-                padding: 15px 25px;
-            }
-
-            header {
-                font-size: 1.5em;
-            }
-
-            .content {
-                margin: 10px;
-                padding: 10px;
-            }
-
-            .footer {
-                font-size: 0.8em;
-            }
-        }
-
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f2f2f2;
-            margin: 0;
-            padding: 0;
-        }
-
-        header {
-            background-color: #4CAF50;
-            color: white;
-            text-align: center;
-            padding: 1em 0;
-            font-size: 2em;
-        }
-
-        .content {
-            max-width: 800px;
-            margin: 20px auto;
-            padding: 20px;
-            background-color: white;
-            border-radius: 5px;
-        }
-
-        .intro {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-
-        .sections {
-            display: flex;
-            justify-content: space-around;
-            margin-top: 20px;
-        }
-
-        .section {
-            width: 30%;
-            text-align: center;
-        }
-
-        .footer {
-            text-align: center;
-            margin-top: 40px;
-            font-size: 0.9em;
-            color: #777;
-        }
-
-        .section-icon {
-            font-size: 48px;
-            color: #4CAF50;
-            display: block;
-            margin: 0 auto 15px auto;
-        }
-
-        footer {
-            position: fixed;
-            right: 10px;
-            bottom: 10px;
-            font-size: 0.9em;
-            color: #777;
-        }
-
-        .fade-in {
-            opacity: 0;
-            animation-name: fadeIn;
-            animation-duration: 1.5s;
-            animation-timing-function: ease-in;
-            animation-fill-mode: forwards;
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
-            }
-        }
-
-        .google-styled-button:hover {
-            transform: scale(1.05);
-            transition: transform 0.3s ease-in-out;
-        }
-
-        .slide-in-from-right {
-            transform: translateX(100%);
-            animation: slideIn 1s forwards;
-        }
-
-        @keyframes slideIn {
-            to {
-                transform: translateX(0);
-            }
-        }
-
-        .material-icons:hover {
-            transform: rotate(360deg);
-            transition: transform 0.5s ease-in-out;
-        }
-
-        .bounce-in {
-            animation: bounce 1s infinite;
-        }
-
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% {
-                transform: translateY(0);
-            }
-            40% {
-                transform: translateY(-10px);
-            }
-            60% {
-                transform: translateY(-5px);
-            }
-        }
-
-        .rotate {
-            animation: spin 4s linear infinite;
-        }
-
-        @keyframes spin {
-            100% {
-                transform: rotate(360deg);
-            }
-        }
-
-        .pulse {
-            animation: pulse 1.5s infinite;
-        }
-
-        @keyframes pulse {
-            0% {
-                transform: scale(1);
-            }
-            50% {
-                transform: scale(1.1);
-            }
-            100% {
-                transform: scale(1);
-            }
-        }
-
-        .wiggle {
-            animation: wiggle 1s ease-in-out infinite;
-        }
-
-        @keyframes wiggle {
-            0% {
-                transform: rotate(-3deg);
-            }
-            50% {
-                transform: rotate(3deg);
-            }
-            100% {
-                transform: rotate(-3deg);
-            }
-        }
-
-        .slide-up-hover:hover {
-            transform: translateY(-5px);
-            transition: transform 0.3s ease-in-out;
-        }
-
-        .burger-menu {
-            display: none;
-        }
-
-        .nav-links {
-            display: flex;
-            justify-content: space-around;
-        }
-
-        @media screen and (max-width: 768px) {
-            .burger-menu {
-                display: block;
-                position: absolute;
-                right: 20px;
-                top: 20px;
-                cursor: pointer;
-            }
-
-            .nav-links {
-                display: none;
-                flex-direction: column;
-                position: absolute;
-                right: 0;
-                top: 60px;
-                background-color: #4CAF50;
-                width: 100%;
-                text-align: center;
-            }
-
-            .nav-links a {
-                color: white;
-                padding: 10px;
-                display: block;
-            }
-        }
-
-        .nav-active {
-            display: flex;
-        }
-
-        .update-banner {
-            background-color: yellow;
-            color: black;
-            text-align: center;
-            padding: 10px 0;
-            font-weight: bold;
-            font-size: 16px;
-            width: 100%;
-            position: fixed;
+        /* Modal Styles */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1; /* Sit on top */
+            left: 0;
             top: 0;
-            z-index: 1000;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            width: 100%;
+            height: 100%;
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgb(0,0,0); /* Fallback color */
+            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+            padding-top: 60px;
         }
-
-        body {
-            padding-top: 50px;
+        .modal-content {
+            background-color: #fefefe;
+            margin: 5% auto; /* 15% from the top and centered */
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%; /* Could be more or less, depending on screen size */
+            max-width: 400px;
         }
-
-        .update-banner img {
-            height: 1em;
-            width: auto;
-            vertical-align: middle;
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .modal-button {
+            margin-top: 10px;
         }
     </style>
 </head>
 <body>
     <header>
+        <!-- Your existing header content -->
         <div class="burger-menu">
             <span class="material-icons">menu</span>
         </div>
@@ -324,9 +113,35 @@
                 <a href="games.html"><button class="glossy-fade-button">Play Now</button></a>
             </div>
         </div>
+
+        <!-- Button to Open the Modal -->
+        <button id="openModalBtn" class="glossy-fade-button modal-button">Sign Up / Log In</button>
+    </div>
+
+    <!-- The Modal -->
+    <div id="authModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Sign Up / Log In</h2>
+
+            <!-- Sign-Up Form -->
+            <form id="signup-form">
+                <input type="email" id="signup-email" placeholder="Email" required>
+                <input type="password" id="signup-password" placeholder="Password" required>
+                <button type="submit" class="glossy-fade-button">Sign Up</button>
+            </form>
+
+            <!-- Log-In Form -->
+            <form id="login-form">
+                <input type="email" id="login-email" placeholder="Email" required>
+                <input type="password" id="login-password" placeholder="Password" required>
+                <button type="submit" class="glossy-fade-button">Log In</button>
+            </form>
+        </div>
     </div>
 
     <footer>
+        <!-- Your existing footer content -->
         <div id="donate-button-container">
             <div id="donate-button"></div>
             <script src="https://www.paypalobjects.com/donate/sdk/donate-sdk.js" charset="UTF-8"></script>
@@ -366,12 +181,64 @@
             burger.addEventListener('click', () => {
                 navLinks.classList.toggle('nav-active');
             });
+
+            // Modal logic
+            const modal = document.getElementById("authModal");
+            const openModalBtn = document.getElementById("openModalBtn");
+            const closeModalBtn = document.querySelector(".close");
+
+            // Open modal
+            openModalBtn.onclick = function() {
+                modal.style.display = "block";
+            }
+
+            // Close modal when clicking on the close button
+            closeModalBtn.onclick = function() {
+                modal.style.display = "none";
+            }
+
+            // Close modal when clicking outside of the modal
+            window.onclick = function(event) {
+                if (event.target == modal) {
+                    modal.style.display = "none";
+                }
+            }
+
+            // Firebase Authentication
+            const auth = firebase.auth();
+
+            // Sign-Up Function
+            document.getElementById('signup-form').addEventListener('submit', function (e) {
+                e.preventDefault();
+                const email = document.getElementById('signup-email').value;
+                const password = document.getElementById('signup-password').value;
+                auth.createUserWithEmailAndPassword(email, password)
+                    .then((userCredential) => {
+                        alert('Sign up successful!');
+                        modal.style.display = "none"; // Close the modal
+                    })
+                    .catch((error) => {
+                        console.error('Error signing up:', error);
+                        alert('Error signing up: ' + error.message);
+                    });
+            });
+
+            // Log-In Function
+            document.getElementById('login-form').addEventListener('submit', function (e) {
+                e.preventDefault();
+                const email = document.getElementById('login-email').value;
+                const password = document.getElementById('login-password').value;
+                auth.signInWithEmailAndPassword(email, password)
+                    .then((userCredential) => {
+                        alert('Log in successful!');
+                        modal.style.display = "none"; // Close the modal
+                    })
+                    .catch((error) => {
+                        console.error('Error logging in:', error);
+                        alert('Error logging in: ' + error.message);
+                    });
+            });
         });
     </script>
-
-
-    <!-- External JavaScript for cleaner HTML -->
 </body>
 </html>
-
-
