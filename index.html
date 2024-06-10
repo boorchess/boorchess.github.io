@@ -78,6 +78,18 @@
         .modal-button {
             margin-top: 10px;
         }
+        /* Profile in header */
+        .profile-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-left: auto; /* Align to the right */
+        }
+        .profile-info img {
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+        }
     </style>
 </head>
 <body>
@@ -91,6 +103,10 @@
             <a href="learn.html"><span class="material-icons">school</span> Learn More</a>
             <a href="games.html"><span class="material-icons">sports_esports</span> Play Now</a>
         </nav>
+        <!-- Placeholder for profile info -->
+        <div class="profile-info" id="profile-info">
+            <!-- This will be populated after login -->
+        </div>
     </header>
 
     <div class="update-banner">🤫 A big update will happen in sometime.</div>
@@ -232,11 +248,30 @@
                     .then((userCredential) => {
                         alert('Log in successful!');
                         modal.style.display = "none"; // Close the modal
+                        // Update the header with user info
+                        const user = userCredential.user;
+                        updateUserProfile(user);
                     })
                     .catch((error) => {
                         console.error('Error logging in:', error);
                         alert('Error logging in: ' + error.message);
                     });
+            });
+
+            // Function to update the profile information in the header
+            function updateUserProfile(user) {
+                const profileInfo = document.getElementById('profile-info');
+                profileInfo.innerHTML = `
+                    <img src="${user.photoURL || 'default-profile.png'}" alt="User Profile Picture">
+                    <span>${user.displayName || user.email}</span>
+                `;
+            }
+
+            // Check if the user is already logged in
+            auth.onAuthStateChanged((user) => {
+                if (user) {
+                    updateUserProfile(user);
+                }
             });
         });
     </script>
