@@ -11,21 +11,6 @@
     <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app.js"></script>
     <!-- Firebase Authentication -->
     <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth.js"></script>
-    <!-- Initialize Firebase -->
-    <script>
-        // Your web app's Firebase configuration
-        const firebaseConfig = {
-            apiKey: "AIzaSyDwP21lUS2XHniMhrOXBw2X0U1oQmZ8S2A",
-            authDomain: "cool-smart-kids.firebaseapp.com",
-            projectId: "cool-smart-kids",
-            storageBucket: "cool-smart-kids.appspot.com",
-            messagingSenderId: "471545141559",
-            appId: "1:471545141559:web:51bd3d14489c4628ae22b2",
-            measurementId: "G-LXTHH9V7BR"
-        };
-        // Initialize Firebase
-        firebase.initializeApp(firebaseConfig);
-    </script>
     <style>
         /* Existing CSS */
         .glossy-fade-button {
@@ -91,6 +76,22 @@
             height: 40px;
         }
     </style>
+    <!-- Firebase initialization script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Initialize Firebase
+            const firebaseConfig = {
+                apiKey: "AIzaSyDwP21lUS2XHniMhrOXBw2X0U1oQmZ8S2A",
+                authDomain: "cool-smart-kids.firebaseapp.com",
+                projectId: "cool-smart-kids",
+                storageBucket: "cool-smart-kids.appspot.com",
+                messagingSenderId: "471545141559",
+                appId: "1:471545141559:web:51bd3d14489c4628ae22b2",
+                measurementId: "G-LXTHH9V7BR"
+            };
+            firebase.initializeApp(firebaseConfig);
+        });
+    </script>
 </head>
 <body>
     <header>
@@ -185,102 +186,95 @@
         © 2023 - 2024 Cool Smart Kidz. All rights reserved, Made by <a href="https://boorgibson7.wixsite.com/gibson">Gibson B</a>
     </footer>
 
-  <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        twemoji.parse(document.body);
-    });
-
-    document.addEventListener('DOMContentLoaded', () => {
-        const burger = document.querySelector('.burger-menu');
-        const navLinks = document.querySelector('.nav-links');
-
-        burger.addEventListener('click', () => {
-            navLinks.classList.toggle('nav-active');
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            twemoji.parse(document.body);
         });
 
-        // Modal logic
-        const modal = document.getElementById("authModal");
-        const openModalBtn = document.getElementById("openModalBtn");
-        const closeModalBtn = document.querySelector(".close");
+        document.addEventListener('DOMContentLoaded', () => {
+            const burger = document.querySelector('.burger-menu');
+            const navLinks = document.querySelector('.nav-links');
 
-        // Open modal
-        openModalBtn.onclick = function() {
-            modal.style.display = "block";
-        }
+            burger.addEventListener('click', () => {
+                navLinks.classList.toggle('nav-active');
+            });
 
-        // Close modal when clicking on the close button
-        closeModalBtn.onclick = function() {
-            modal.style.display = "none";
-        }
+            // Modal logic
+            const modal = document.getElementById("authModal");
+            const openModalBtn = document.getElementById("openModalBtn");
+            const closeModalBtn = document.querySelector(".close");
 
-        // Close modal when clicking outside of the modal
-        window.onclick = function(event) {
-            if (event.target == modal) {
+            // Open modal
+            openModalBtn.onclick = function() {
+                modal.style.display = "block";
+            }
+
+            // Close modal when clicking on the close button
+            closeModalBtn.onclick = function() {
                 modal.style.display = "none";
             }
-        }
 
-        // Firebase Authentication
-        const auth = firebase.auth();
-
-        // Sign-Up Function
-        document.getElementById('signup-form').addEventListener('submit', function (e) {
-            e.preventDefault(); // Prevent form submission
-            const email = document.getElementById('signup-email').value;
-            const password = document.getElementById('signup-password').value;
-            auth.createUserWithEmailAndPassword(email, password)
-                .then((userCredential) => {
-                    alert('Sign up successful!');
-                    modal.style.display = "none"; // Close the modal
-                    // Redirect to a specific page or reload
-                    window.location.href = 'welcome.html'; // Change to your desired page
-                })
-                .catch((error) => {
-                    console.error('Error signing up:', error);
-                    alert('Error signing up: ' + error.message);
-                });
-        });
-
-        // Log-In Function
-        document.getElementById('login-form').addEventListener('submit', function (e) {
-            e.preventDefault(); // Prevent form submission
-            const email = document.getElementById('login-email').value;
-            const password = document.getElementById('login-password').value;
-            auth.signInWithEmailAndPassword(email, password)
-                .then((userCredential) => {
-                    alert('Log in successful!');
-                    modal.style.display = "none"; // Close the modal
-                    // Update the header with user info
-                    const user = userCredential.user;
-                    updateUserProfile(user);
-                    // Redirect to a specific page or reload
-                    window.location.href = 'dashboard.html'; // Change to your desired page
-                })
-                .catch((error) => {
-                    console.error('Error logging in:', error);
-                    alert('Error logging in: ' + error.message);
-                });
-        });
-
-        // Function to update the profile information in the header
-        function updateUserProfile(user) {
-            const profileInfo = document.getElementById('profile-info');
-            profileInfo.innerHTML = `
-                <img src="${user.photoURL || 'default-profile.png'}" alt="User Profile Picture">
-                <span>${user.displayName || user.email}</span>
-            `;
-        }
-
-        // Check if the user is already logged in
-        auth.onAuthStateChanged((user) => {
-            if (user) {
-                updateUserProfile(user);
-                // Optional: Redirect to dashboard or homepage after successful auto-login
-                // window.location.href = 'dashboard.html'; // Change to your desired page
+            // Close modal when clicking outside of the modal
+            window.onclick = function(event) {
+                if (event.target == modal) {
+                    modal.style.display = "none";
+                }
             }
-        });
-    });
-</script>
 
+            // Firebase Authentication
+            const auth = firebase.auth();
+
+            // Sign-Up Function
+            document.getElementById('signup-form').addEventListener('submit', function (e) {
+                e.preventDefault(); // Prevent form submission
+                const email = document.getElementById('signup-email').value;
+                const password = document.getElementById('signup-password').value;
+                auth.createUserWithEmailAndPassword(email, password)
+                    .then((userCredential) => {
+                        alert('Sign up successful!');
+                        modal.style.display = "none"; // Close the modal
+                    })
+                    .catch((error) => {
+                        console.error('Error signing up:', error);
+                        alert('Error signing up: ' + error.message);
+                    });
+            });
+
+            // Log-In Function
+            document.getElementById('login-form').addEventListener('submit', function (e) {
+                e.preventDefault(); // Prevent form submission
+                const email = document.getElementById('login-email').value;
+                const password = document.getElementById('login-password').value;
+                auth.signInWithEmailAndPassword(email, password)
+                    .then((userCredential) => {
+                        alert('Log in successful!');
+                        modal.style.display = "none"; // Close the modal
+                        // Update the header with user info
+                        const user = userCredential.user;
+                        updateUserProfile(user);
+                    })
+                    .catch((error) => {
+                        console.error('Error logging in:', error);
+                        alert('Error logging in: ' + error.message);
+                    });
+            });
+
+            // Function to update the profile information in the header
+            function updateUserProfile(user) {
+                const profileInfo = document.getElementById('profile-info');
+                profileInfo.innerHTML = `
+                    <img src="${user.photoURL || 'default-profile.png'}" alt="User Profile Picture">
+                    <span>${user.displayName || user.email}</span>
+                `;
+            }
+
+            // Check if the user is already logged in
+            auth.onAuthStateChanged((user) => {
+                if (user) {
+                    updateUserProfile(user);
+                }
+            });
+        });
+    </script>
 </body>
 </html>
