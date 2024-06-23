@@ -1,80 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cool Strong Kids - Games Section</title>
+    <title>Website Under Maintenance</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            margin: 40px;
-        }
-        .section {
-            border: 1px solid #ccc;
-            padding: 20px;
-            margin-bottom: 20px;
-            border-radius: 5px;
-        }
-        h2 {
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
             color: #333;
-            margin-top: 0;
         }
-        li {
+        .maintenance-container {
+            text-align: center;
+            padding: 20px;
+            border: 2px solid #ccc;
+            border-radius: 10px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            font-size: 2.5em;
             margin-bottom: 10px;
+            color: #d9534f;
         }
-        button {
-            background-color: #4CAF50; /* Green background */
-            border: none;  /* No border */
-            color: white;  /* White text */
-            padding: 15px 32px;  /* Padding */
-            text-align: center;  /* Centered text */
-            text-decoration: none;  /* No underline */
-            display: inline-block;  /* Inline block */
-            font-size: 16px;  /* Text size */
-            margin: 4px 2px;  /* Margin */
-            cursor: pointer;  /* Hand cursor on hover */
-            border-radius: 4px;  /* Rounded corners */
+        p {
+            font-size: 1.2em;
+            margin-bottom: 20px;
+        }
+        .error-code {
+            margin-top: 20px;
+            font-size: 0.9em;
+            color: #999;
         }
     </style>
-	<script src="https://twemoji.maxcdn.com/v/latest/twemoji.min.js" crossorigin="anonymous"></script>
 </head>
 <body>
-
-<div class="section">
-    <h2>GAMES</h2>
-    
-    <ul>
-        <li><strong>Math Blocks</strong>: Learn the FUNdamentals of Math.
-            <a href="games/math.html"><button>PLAY</button></a>
-        </li>
-    </ul>
-    <ul>
-        <li><strong>Flag Game</strong>: Learn Geography.
-            <a href="games/flags.html"><button>PLAY</button></a>
-        </li>
-    </ul>
-    <ul>
-        <li><strong>Emoji Spelling</strong>: Learn emojis and how to spell.
-            <a href="games/emoji.html"><button>PLAY</button></a>
-        </li>
-    </ul>
-    <ul>
-        <li><strong>Fat Dog</strong>: Learn subscription using a fat dog losing weight.
-            <a href="games/fatdog.html"><button>PLAY</button></a>
-        </li>
-    </ul>
-    <ul>
-        <li><strong>Guessing Game</strong>: 
-            It's a simple guessing game where players input a number between 1 and 100 to guess the randomly generated number.
-            <a href="games/number.html"><button>PLAY</button></a>
-        </li>
-    </ul>
-</div>
-
-<script>
-  twemoji.parse(document.body);
-</script>
-
+    <div class="maintenance-container">
+        <h1>We’ll be back soon!</h1>
+        <p>Sorry for the inconvenience. We’re performing some maintenance at the moment. We’ll be back online shortly!</p>
+        <p>We are currently fixing some bugs to improve your experience and implementing a brand-new design. Stay tuned for our upcoming public release!</p>
+        <p class="error-code">Error Code: 503 - Service Unavailable</p>
+    </div>
 </body>
 </html>
