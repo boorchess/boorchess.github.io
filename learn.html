@@ -3,119 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Learn | Cool Smart Kidz</title>
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <title>Website Under Maintenance</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #e6ffe6;
+            background-color: #f2f2f2;
             margin: 0;
             padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            color: #333;
         }
-
-        header {
-            background-color: #4CAF50;
-            color: white;
+        .maintenance-container {
             text-align: center;
-            padding: 10px 0;
-            font-size: 24px;
-        }
-
-        .container {
-            width: 80%;
-            margin: 20px auto;
-            background-color: white;
             padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border: 2px solid #ccc;
+            border-radius: 10px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
-
-        .collapsible {
-            background-color: #4CAF50;
-            color: white;
-            cursor: pointer;
-            padding: 18px;
-            width: 100%;
-            border: none;
-            text-align: left;
-            outline: none;
-            font-size: 18px;
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            color: #d9534f;
         }
-
-        .active, .collapsible:hover {
-            background-color: #3e8e41;
+        p {
+            font-size: 1.2em;
+            margin-bottom: 20px;
         }
-
-        .content {
-            padding: 0 18px;
-            display: none;
-            overflow: hidden;
-            background-color: #f9f9f9;
+        .error-code {
+            margin-top: 20px;
+            font-size: 0.9em;
+            color: #999;
         }
     </style>
 </head>
 <body>
-
-    <header>
-        Cool Smart Kidz - Learn Section
-    </header>
-
-    <div class="container">
-        <!-- Collapsible section for Mathematics -->
-        <button class="collapsible"><i class="material-icons">book</i> Mathematics</button>
-        <div class="content">
-            <p>Engage with fun math puzzles and games to sharpen your number skills.</p>
-        </div>
-
-        <!-- Collapsible section for Science Experiments -->
-        <button class="collapsible"><i class="material-icons">science</i> Science Experiments</button>
-        <div class="content">
-            <p>Discover fascinating experiments you can do at home with simple materials.</p>
-        </div>
-
-        <!-- Collapsible section for History Mysteries -->
-        <button class="collapsible"><i class="material-icons">history_edu</i> History Mysteries</button>
-        <div class="content">
-            <p>Dive deep into the past and unravel the mysteries of ancient civilizations.</p>
-        </div>
-
-        <!-- Collapsible section for Literature and Stories -->
-        <button class="collapsible"><i class="material-icons">menu_book</i> Literature and Stories</button>
-        <div class="content">
-            <p>Read captivating stories and explore the world of classic literature.</p>
-        </div>
-
-        <!-- Collapsible section for Coding for Kids -->
-        <button class="collapsible"><i class="material-icons">code</i> Coding for Kids</button>
-        <div class="content">
-            <p>Start your coding journey with beginner-friendly projects and challenges.</p>
-            <a href="scratch.html"><button>Scratch</button></a>
-            <a href="scratchjr.html"><button>Scratch Jr</button></a>
-        </div>
-                <button class="collapsible"><i class="material-icons"><span class="material-symbols-outlined">
-dashboard
-</span></i> Geometry</button>
-        <div class="content">
-            <p>Explore the world of shapes, sizes, and spatial understanding.</p>
-        </div>
+    <div class="maintenance-container">
+        <h1>We’ll be back soon!</h1>
+        <p>Sorry for the inconvenience. We’re performing some maintenance at the moment. We’ll be back online shortly!</p>
+        <p>We are currently fixing some bugs to improve your experience and implementing a brand-new design. Stay tuned for our upcoming public release!</p>
+        <p class="error-code">Error Code: 503 - Service Unavailable</p>
     </div>
-
-
-    <script>
-        var coll = document.getElementsByClassName("collapsible");
-        var i;
-
-        for (i = 0; i < coll.length; i++) {
-            coll[i].addEventListener("click", function() {
-                this.classList.toggle("active");
-                var content = this.nextElementSibling;
-                if (content.style.display === "block") {
-                    content.style.display = "none";
-                } else {
-                    content.style.display = "block";
-                }
-            });
-        }
-    </script>
 </body>
 </html>
