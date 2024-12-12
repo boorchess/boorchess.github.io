@@ -1,36 +1,25 @@
-@@ -1,13 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+      <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cool Smart Kidz</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="styles.css"> <!-- External CSS for cleaner HTML -->
     <script src="https://cdn.jsdelivr.net/npm/twemoji@13.0.1/dist/twemoji.min.js"></script>
-    <!-- Firebase App (the core Firebase SDK) -->
-    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app.js"></script>
-    <!-- Firebase Authentication -->
-    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth.js"></script>
-    <!-- Initialize Firebase -->
-    <script>
-        // Your web app's Firebase configuration
-        const firebaseConfig = {
-            apiKey: "AIzaSyDwP21lUS2XHniMhrOXBw2X0U1oQmZ8S2A",
-            authDomain: "cool-smart-kids.firebaseapp.com",
-            projectId: "cool-smart-kids",
-            storageBucket: "cool-smart-kids.appspot.com",
-            messagingSenderId: "471545141559",
-            appId: "1:471545141559:web:51bd3d14489c4628ae22b2",
-            measurementId: "G-LXTHH9V7BR"
-        };
-        // Initialize Firebase
-        firebase.initializeApp(firebaseConfig);
-    </script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3762342017566559" crossorigin="anonymous"></script>
     <style>
         /* Existing CSS */
         .glossy-fade-button {
-@@ -23,277 +41,48 @@
+            padding: 10px 30px;
+            border: 2px solid #27ae60;
+            background-image: linear-gradient(to bottom, #2ecc71 0%, #27ae60 51%, #2ecc71 100%);
+            border-radius: 5px;
+            color: white;
+            font-family: Arial, sans-serif;
+            text-transform: uppercase;
+            font-size: 16px;
+            cursor: pointer;
             outline: none;
             transition: background-image 0.1s ease, border-color 0.1s ease;
         }
@@ -65,6 +54,7 @@
                 font-size: 0.8em;
             }
         }
+
         body {
             font-family: Arial, sans-serif;
             background-color: #f2f2f2;
@@ -81,23 +71,6 @@
         .content {
             max-width: 800px;
             margin: 20px auto;
-        /* Modal Styles */
-        .modal {
-            display: none; /* Hidden by default */
-            position: fixed; /* Stay in place */
-            z-index: 1; /* Sit on top */
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            overflow: auto; /* Enable scroll if needed */
-            background-color: rgb(0,0,0); /* Fallback color */
-            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-            padding-top: 60px;
-        }
-        .modal-content {
-            background-color: #fefefe;
-            margin: 5% auto; /* 15% from the top and centered */
             padding: 20px;
             background-color: white;
             border-radius: 5px;
@@ -122,7 +95,7 @@
             color: #777;
         }
         .section-icon {
-            font-size: 48px;
+                 font-size: 48px;
             color: #4CAF50;
             display: block;
             margin: 0 auto 15px auto;
@@ -259,14 +232,6 @@
             color: black;
             text-align: center;
             padding: 10px 0;
-            border: 1px solid #888;
-            width: 80%; /* Could be more or less, depending on screen size */
-            max-width: 400px;
-        }
-        .close {
-            color: #aaa;
-            float: right;
-            font-size: 28px;
             font-weight: bold;
             font-size: 16px;
             width: 100%;
@@ -279,96 +244,66 @@
         }
         body {
             padding-top: 50px;
-        .close:hover,
-        .close:focus {
-            color: black;
-            text-decoration: none;
-            cursor: pointer;
         }
         .update-banner img {
             height: 1em;
             width: auto;
             vertical-align: middle;
-        .modal-button {
-            margin-top: 10px;
         }
     </style>
 </head>
 <body>
     <header>
-        <!-- Your existing header content -->
-        <div class="burger-menu">
-            <span class="material-icons">menu</span>
-        </div>
-@@ -324,9 +113,35 @@
+        <nav class="nav-links">
+            <a href="learn.html"><span class="material-icons">school</span> Learn More</a>
+            <a href="games.html"><span class="material-icons">sports_esports</span> Play Now</a>
+     
+        </nav>
+    </header>
+    
+    <div class="content">
+        <div class="intro">
+<h2>Play</h2>
+                <p>Engage in brainy games that challenge and entertain.</p>
                 <a href="games.html"><button class="glossy-fade-button">Play Now</button></a>
             </div>
-
+            
+        </div>
+    </div>
     <footer>
-        <!-- Your existing footer content -->
-        <div id="donate-button-container">
-            <div id="donate-button"></div>
-            <script src="https://www.paypalobjects.com/donate/sdk/donate-sdk.js" charset="UTF-8"></script>
-@@ -366,12 +181,64 @@
+      <div class="a2a_kit a2a_kit_size_32 a2a_default_style">
+            <a class="a2a_dd" href="https://www.addtoany.com/share"></a>
+            <a class="a2a_button_google_classroom"></a>
+            <a class="a2a_button_facebook"></a>
+            <a class="a2a_button_x"></a>
+            <a href="social.html"><button class="glossy-fade-button">Social</button></a>
+        </div>
+        <script async src="https://static.addtoany.com/menu/page.js"></script>
+        © 2023 - 2024 Cool Smart Kidz. All rights reserved, Made by <a href="https://boorgibson7.wixsite.com/gibson">Gibson B</a>
+    </footer>
+    <!-- External JavaScript for cleaner HTML -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            twemoji.parse(document.body);
+        });
+        document.addEventListener('DOMContentLoaded', () => {
+            const burger = document.querySelector('.burger-menu');
+            const navLinks = document.querySelector('.nav-links');
             burger.addEventListener('click', () => {
                 navLinks.classList.toggle('nav-active');
             });
         });
     </script>
-
-            // Modal logic
-            const modal = document.getElementById("authModal");
-            const openModalBtn = document.getElementById("openModalBtn");
-            const closeModalBtn = document.querySelector(".close");
-            // Open modal
-            openModalBtn.onclick = function() {
-                modal.style.display = "block";
-            }
-            // Close modal when clicking on the close button
-            closeModalBtn.onclick = function() {
-                modal.style.display = "none";
-            }
-            // Close modal when clicking outside of the modal
-            window.onclick = function(event) {
-                if (event.target == modal) {
-                    modal.style.display = "none";
-                }
-            }
-            // Firebase Authentication
-            const auth = firebase.auth();
-            // Sign-Up Function
-            document.getElementById('signup-form').addEventListener('submit', function (e) {
-                e.preventDefault();
-                const email = document.getElementById('signup-email').value;
-                const password = document.getElementById('signup-password').value;
-                auth.createUserWithEmailAndPassword(email, password)
-                    .then((userCredential) => {
-                        alert('Sign up successful!');
-                        modal.style.display = "none"; // Close the modal
-                    })
-                    .catch((error) => {
-                        console.error('Error signing up:', error);
-                        alert('Error signing up: ' + error.message);
-                    });
-            });
-
-    <!-- External JavaScript for cleaner HTML -->
-            // Log-In Function
-            document.getElementById('login-form').addEventListener('submit', function (e) {
-                e.preventDefault();
-                const email = document.getElementById('login-email').value;
-                const password = document.getElementById('login-password').value;
-                auth.signInWithEmailAndPassword(email, password)
-                    .then((userCredential) => {
-                        alert('Log in successful!');
-                        modal.style.display = "none"; // Close the modal
-                    })
-                    .catch((error) => {
-                        console.error('Error logging in:', error);
-                        alert('Error logging in: ' + error.message);
-                    });
-            });
-        });
+    <!-- Google AdSense Code -->
+    <ins class="adsbygoogle"
+         style="display:block"
+         data-ad-client="ca-pub-3762342017566559"
+         data-ad-slot="9910881436"
+         data-ad-format="auto"
+         data-full-width-responsive="true"></ins>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
     </script>
+    <!-- External JavaScript for cleaner HTML -->
 </body>
 </html>
