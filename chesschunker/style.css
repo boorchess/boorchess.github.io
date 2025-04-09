@@ -1,0 +1,372 @@
+* {
+     box-sizing: border-box; /* Ensure padding/border are included in element size */
+}
+
+body {
+    font-family: sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f0f0f0;
+    margin: 0; /* Remove default body margin */
+}
+
+.game-container {
+    background-color: #fff;
+    padding: 20px 30px; /* Adjusted padding */
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); /* Softer shadow */
+    text-align: center;
+    max-width: 95vw; /* Slightly larger max-width */
+    width: fit-content; /* Adjust width based on content */
+    display: flex; /* Use flexbox for overall layout */
+    flex-direction: column; /* Stack controls, game area, messages */
+    align-items: center; /* Center items horizontally */
+}
+
+h1 {
+    margin-top: 0; /* Remove extra space above heading */
+    color: #333;
+}
+
+.controls {
+    margin-bottom: 20px;
+    display: flex; /* Use flexbox for better alignment */
+    justify-content: center; /* Center controls */
+    align-items: center; /* Align items vertically */
+    flex-wrap: wrap; /* Allow wrapping on smaller screens */
+    gap: 10px; /* Add space between control elements */
+}
+
+.controls label {
+    /* margin-right: 5px; */ /* Replaced by gap */
+}
+
+.controls select, .controls button {
+    padding: 8px 12px;
+    /* margin-right: 10px; */ /* Replaced by gap */
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1em;
+    vertical-align: middle; /* Align with labels */
+}
+
+.controls button {
+    background-color: #4CAF50;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.2s ease; /* Smooth transition */
+}
+
+.controls button#instructions-button {
+    background-color: #007bff; /* Blue color */
+    margin-left: 5px; /* Add some space from start button */
+}
+
+.controls button#instructions-button:hover:not(:disabled) {
+    background-color: #0056b3;
+}
+
+.controls button:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+    opacity: 0.7; /* Slightly fade disabled controls */
+}
+
+.controls select:disabled {
+     background-color: #eeeeee;
+     cursor: not-allowed;
+     opacity: 0.7; /* Slightly fade disabled controls */
+}
+
+.controls button:hover:not(:disabled) {
+    background-color: #45a049;
+}
+
+/* New layout for grid and palettes */
+.game-layout {
+    display: flex;
+    justify-content: center; /* Center the main content (board + palettes) */
+    align-items: flex-start; /* Align items to the top */
+    gap: 20px; /* Space between elements */
+    width: 100%; /* Take full width of container */
+    margin-top: 20px; /* Add margin above game area */
+}
+
+.main-game-area {
+     /* No extra styles needed now, just a container for the grid */
+     /* flex-grow: 1; /* Allow grid area to take space if needed */
+     display: flex; /* To center grid if palettes make layout wider */
+     justify-content: center;
+     /* Define a fixed size for the area containing the grid */
+     width: 480px; /* Example fixed width */
+     height: 480px; /* Example fixed height */
+     max-width: 80vmin; /* Use viewport units for responsiveness */
+     max-height: 80vmin;
+}
+
+.grid {
+    display: grid;
+    border: 1px solid #aaa; /* Slightly darker border */
+    background-color: #eee; /* Background for the grid container itself */
+    /* Width and height should fill the main-game-area */
+    width: 100%;
+    height: 100%;
+    /* max-width: 100%; Ensure grid doesn't overflow container */ /* Covered by width: 100% */
+    /* New: Ensure grid stays square */
+    aspect-ratio: 1 / 1;
+}
+
+/* Add styles for disabled grid state */
+.grid.disabled {
+     opacity: 0.8; /* Slightly fade grid when disabled */
+}
+.grid.disabled .grid-cell {
+    cursor: default;
+}
+
+.grid-cell {
+    /* width/height/font-size set dynamically by JS */
+    border: 1px solid #eee;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.2s ease, filter 0.2s ease, box-shadow 0.2s ease; /* Added box-shadow transition */
+    user-select: none; /* Prevent text selection */
+    box-sizing: border-box; /* Include border in size */
+    overflow: hidden; /* Hide potential piece overflow */
+    text-shadow: none; /* Removed old shadow, now on piece-element */
+}
+
+.grid-cell.light {
+    background-color: #f0d9b5; /* Light square color */
+}
+
+.grid-cell.dark {
+    background-color: #b58863; /* Dark square color */
+}
+
+/* Subtle hover effect for drop targets */
+.grid:not(.disabled) .grid-cell.drop-target:not(.correct):not(.incorrect):hover {
+    /* filter: brightness(0.95); */ /* Using drag-over effect instead */
+}
+
+/* Style for when dragging over a valid drop target */
+.grid-cell.drag-over {
+    box-shadow: inset 0 0 0 3px #4CAF50; /* Green inset border */
+    background-color: rgba(76, 175, 80, 0.1); /* Slight green background tint */
+}
+
+.grid-cell.highlight {
+    background-color: #ffff99 !important; /* Highlight color for pattern, use !important to override base */
+    filter: brightness(1) !important; /* Ensure highlight overrides hover filter */
+}
+
+.grid-cell.correct {
+    background-color: #90ee90 !important; /* Light green for correct selection */
+    filter: brightness(1) !important; /* Ensure correct overrides hover */
+     box-shadow: inset 0 0 0 2px green; /* Add a visual cue */
+}
+
+.grid-cell.incorrect {
+    background-color: #ffcccb !important; /* Light red for incorrect selection */
+    filter: brightness(1) !important; /* Ensure incorrect overrides hover */
+     box-shadow: inset 0 0 0 2px red; /* Add a visual cue */
+}
+
+/* --- New Piece Palette Styles --- */
+.piece-palette {
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    width: 100px; /* Fixed width for palettes */
+    /* height: fit-content; /* Adjust height based on content */
+    /* max-height: 500px; /* Limit max height */
+    display: flex; /* Use flexbox for vertical layout */
+    flex-direction: column;
+    align-items: center; /* Center heading and piece container */
+    gap: 10px; /* Space between title and pieces */
+    opacity: 1;
+    transition: opacity 0.3s ease;
+}
+
+.piece-palette.hidden {
+    opacity: 0;
+    pointer-events: none; /* Prevent interaction when hidden */
+}
+
+.piece-palette h2 {
+    margin: 0;
+    font-size: 1.1em;
+    color: #555;
+}
+
+.palette-pieces {
+    display: flex;
+    flex-wrap: wrap; /* Allow pieces to wrap */
+    gap: 8px;
+    justify-content: center; /* Center pieces */
+    width: 100%; /* Take full width of palette */
+}
+
+.palette-piece { /* Renamed from draggable-piece for clarity */
+    font-size: 2.2em; /* Base size for pieces */
+    cursor: grab;
+    padding: 4px 6px; /* Adjusted padding for outlines */
+    border-radius: 4px;
+    background-color: #fff;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    transition: opacity 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+    user-select: none; /* Prevent text selection */
+    touch-action: none; /* Improve touch compatibility */
+    line-height: 1; /* Ensure consistent height */
+    text-shadow: none; /* Removed old shadow, now on piece-element */
+}
+
+.palette-piece:active {
+    cursor: grabbing;
+}
+
+/* Style applied during drag operation */
+.palette-piece.dragging {
+    opacity: 0.5;
+    transform: scale(1.1);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+/* Style for when palettes are disabled (e.g., memorize phase) */
+.piece-palette.disabled .palette-piece {
+    cursor: default;
+    opacity: 0.6;
+}
+.piece-palette.disabled {
+    /* Maybe slightly fade the whole palette */
+    /* opacity: 0.8; */
+}
+
+/* --- New Styles for Piece Rendering --- */
+.piece-element { /* The new span wrapping the piece character */
+    display: inline-block; /* Allows potential transforms */
+    line-height: 1; /* Consistent vertical alignment */
+    /* Prevent inheritance */
+    text-shadow: none;
+}
+
+.white-piece {
+    color: white;
+    /* Multi-layer text-shadow to create a black outline */
+    text-shadow:
+        -1px -1px 0 #000,
+         1px -1px 0 #000,
+        -1px  1px 0 #000,
+         1px  1px 0 #000,
+        -1px  0px 0 #000, /* Fill sides */
+         1px  0px 0 #000,
+         0px -1px 0 #000, /* Fill top/bottom */
+         0px  1px 0 #000;
+}
+
+.black-piece {
+    color: black;
+    /* Multi-layer text-shadow to create a white outline */
+    text-shadow:
+        -1px -1px 0 #fff,
+         1px -1px 0 #fff,
+        -1px  1px 0 #fff,
+         1px  1px 0 #fff,
+        -1px  0px 0 #fff, /* Fill sides */
+         1px  0px 0 #fff,
+         0px -1px 0 #fff, /* Fill top/bottom */
+         0px  1px 0 #fff;
+}
+/* --- End New Styles --- */
+
+
+/* --- New Modal Styles --- */
+.modal {
+    position: fixed; /* Stay in place */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Black background with opacity */
+    display: flex; /* Use flexbox to center content */
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; /* Ensure it's on top */
+    opacity: 1;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    visibility: visible;
+}
+
+.modal.hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.modal-content {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    max-width: 90%;
+    width: 500px; /* Adjust as needed */
+    position: relative; /* Needed for absolute positioning of close button */
+    max-height: 80vh; /* Limit height */
+    overflow-y: auto; /* Add scroll if content exceeds height */
+}
+
+.modal-content h2 {
+    margin-top: 0;
+    color: #333;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.modal-content p, .modal-content ol {
+    line-height: 1.6;
+    color: #555;
+}
+
+.modal-content ol {
+    padding-left: 25px; /* Indent list */
+}
+
+.modal-content li {
+    margin-bottom: 10px;
+}
+
+.close-button {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 28px;
+    font-weight: bold;
+    color: #aaa;
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+.close-button:hover {
+    color: #333;
+}
+
+/* --- End Modal Styles --- */
+
+.message {
+    margin-top: 15px;
+    font-size: 1.1em;
+    min-height: 1.5em; /* Prevent layout shift */
+    color: #333;
+    font-weight: bold; /* Make messages stand out more */
+}
+
+.timer {
+    margin-top: 10px;
+    font-size: 1em;
+    color: #d32f2f; /* Red color for urgency */
+    min-height: 1.2em; /* Reserve space even when hidden */
+    font-weight: bold;
+}
